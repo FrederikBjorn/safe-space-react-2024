@@ -22,7 +22,7 @@ function Navlinks({ isClicked, closeMenu }) {
           <Link to="/">Exercises</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/">LogOut</Link>
+          <Link to="/">Log Out</Link>
         </li>
       </ul>
     </nav>

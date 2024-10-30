@@ -1,4 +1,46 @@
 .hero {
-  padding: 40px 0;
+  margin-top: 115px;
+  padding: 50px 0px;
   background-color: #c0dcf6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-right img {
+  height: 100%;
+  width: 100%;
+  max-height: 358px;
+  max-width: 737px;
+}
+
+.button-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-contents .hero-left {
+  flex: 0 0 35%;
+}
+
+.hero-contents .hero-right {
+  flex: 0 0 65%;
 }

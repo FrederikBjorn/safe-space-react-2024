@@ -8,7 +8,6 @@ function Navbar() {
     <>
       <DesktopNavigation />
       <MobileNavigation />
-      <div className="nav-whitespace"></div>
     </>
   );
 }

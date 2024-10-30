@@ -7,7 +7,7 @@ function Navlinks({ isClicked, closeMenu }) {
     <nav className="navlinks">
       <ul>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/">LogIn</Link>
+          <Link to="/">Log in</Link>
         </li>
       </ul>
     </nav>

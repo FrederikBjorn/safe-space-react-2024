@@ -38,25 +38,25 @@
 
 .text-xl-header {
   font-size: 50px;
-  line-height: 1.5;
+  line-height: normal;
   font-weight: bold;
 }
 
 .text-header {
   font-size: 36px;
-  line-height: 1.5;
+  line-height: normal;
   font-weight: normal;
 }
 
 .text-standard {
   font-size: 22px;
-  line-height: 1.5;
+  line-height: normal;
   font-weight: normal;
 }
 
 .text-quotes {
   font-size: 20px;
-  line-height: 1.5;
+  line-height: normal;
   font-weight: normal;
 }
 

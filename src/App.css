@@ -32,3 +32,23 @@ ul {
 img {
   max-width: 100%;
 }
+
+button {
+  background-color: #575757; /* Green */
+  border: none;
+  padding: 11px 34px;
+  border-radius: 50px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+  color: #fff;
+  text-align: center;
+  font-family: "Inter";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 350;
+  line-height: normal;
+}
+
+button:hover {
+  background-color: #257a8b;
+}

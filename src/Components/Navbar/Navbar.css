@@ -1,6 +1,7 @@
 .navbar {
-  position: fixed;
-  top: 0px;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0;
+  background-color: #e1e5f2;
   width: 100%;
   transition: 0.5s;
   z-index: 1000;
@@ -10,7 +11,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 30px 80px;
+  padding: 15px 80px;
 }
 
 nav {
@@ -41,10 +42,6 @@ ul li a:hover {
   color: #257a8b;
   border-right: 3px solid #257a8b;
   border-left: 3px solid #257a8b;
-}
-
-.nav-whitespace {
-  padding-bottom: 150px;
 }
 
 .MobileNavigation {

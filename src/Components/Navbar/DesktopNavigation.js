@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
 import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
-import NavbarScroll from "../NavbarScroll.js";
 import { Link, useLocation } from "react-router-dom";
 
 function DesktopNavigation() {
@@ -18,8 +17,6 @@ function DesktopNavigation() {
       setAuthenticatedUser(true);
     }
   }, [location]);
-
-  NavbarScroll("navbar-desktop");
 
   // Function to handle logo click
   const handleLogoClick = (e) => {

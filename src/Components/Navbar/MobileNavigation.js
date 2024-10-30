@@ -3,7 +3,6 @@ import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import Navlinks from "./NavlinksAfterLogin.js";
 import "./Navbar.css";
-import NavbarScroll from "../NavbarScroll.js";
 import { Link, useLocation } from "react-router-dom";
 
 function MobileNavigation() {
@@ -33,8 +32,6 @@ function MobileNavigation() {
     setClick(false);
   }
   const location = useLocation(); // Get the current location
-
-  NavbarScroll("navbar-mobile", click, closeMenu);
 
   // Function to handle logo click
   const handleLogoClick = (e) => {
