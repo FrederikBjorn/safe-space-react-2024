@@ -22,7 +22,7 @@ function DesktopNavigation() {
       <nav className="DesktopNavigation">
         <div className="logo">
           <Link to="/" onClick={handleLogoClick}>
-            <img src="images/icon.png" alt="logo" width="144" height="130" />
+            <img src="images/icon.png" alt="logo" width="100" height="90" />
           </Link>
         </div>
         <Navlinks />

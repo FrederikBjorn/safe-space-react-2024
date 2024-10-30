@@ -49,7 +49,7 @@ function MobileNavigation() {
       <nav className="MobileNavigation">
         <div className="logo">
           <Link to="/" onClick={handleLogoClick}>
-            <img src="Images/icon.png" alt="logo" width="144" height="130" />
+            <img src="Images/icon.png" alt="logo" width="100" height="90" />
           </Link>
         </div>
         {click ? Close : Hamburger}
