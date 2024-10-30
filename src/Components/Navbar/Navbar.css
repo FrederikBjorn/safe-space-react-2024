@@ -31,23 +31,16 @@ nav ul li {
 }
 
 nav ul li a {
-  padding: 0px 20px;
+  padding: 0px 35px;
   display: block;
-  font-weight: 600;
-  transition: 0.5s;
+  font-weight: normal;
 }
 
 ul li a:hover {
-  color: #b1c3d7;
-}
-
-.logo img {
-  transition: 0.5s;
-}
-
-.logo img:hover {
-  filter: invert(87%) sepia(11%) saturate(508%) hue-rotate(173deg)
-    brightness(90%) contrast(86%);
+  font-weight: 500;
+  color: #257a8b;
+  border-right: 3px solid #257a8b;
+  border-left: 3px solid #257a8b;
 }
 
 .nav-whitespace {

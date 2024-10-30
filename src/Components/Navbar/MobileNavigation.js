@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
 import Navlinks from "./Navlinks.js";
 import "./Navbar.css";
 import NavbarScroll from "../NavbarScroll.js";
-import { Link } from "react-router-dom";
-import { Fade } from "react-awesome-reveal";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function MobileNavigation() {
   const [click, setClick] = useState(false);
@@ -35,6 +32,7 @@ function MobileNavigation() {
   function closeMenu() {
     setClick(false);
   }
+  const location = useLocation(); // Get the current location
 
   NavbarScroll("navbar-mobile", click, closeMenu);
 
@@ -49,13 +47,11 @@ function MobileNavigation() {
   return (
     <div className="navbar" id="navbar-mobile">
       <nav className="MobileNavigation">
-        <Fade direction="down" triggerOnce={true}>
-          <div className="logo">
-            <Link to="/" onClick={handleLogoClick}>
-              <img src="Images/icon.png" alt="logo" width="144" height="130" />
-            </Link>
-          </div>
-        </Fade>
+        <div className="logo">
+          <Link to="/" onClick={handleLogoClick}>
+            <img src="Images/icon.png" alt="logo" width="144" height="130" />
+          </Link>
+        </div>
         {click ? Close : Hamburger}
         {click && <Navlinks isClicked={true} closeMenu={closeMenu} />}
       </nav>

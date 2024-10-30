@@ -1,7 +1,6 @@
 import React from "react";
 import Navlinks from "./Navlinks.js";
 import "./Navbar.css";
-import { Fade } from "react-awesome-reveal";
 import NavbarScroll from "../NavbarScroll.js";
 import { Link, useLocation } from "react-router-dom";
 
@@ -21,14 +20,12 @@ function DesktopNavigation() {
   return (
     <div className="navbar" id="navbar-desktop">
       <nav className="DesktopNavigation">
-        <Fade direction="down" triggerOnce={true}>
-          <div className="logo">
-            <Link to="/" onClick={handleLogoClick}>
-              <img src="images/logo.svg" alt="logo" width="50" height="50" />
-            </Link>
-          </div>
-          <Navlinks />
-        </Fade>
+        <div className="logo">
+          <Link to="/" onClick={handleLogoClick}>
+            <img src="images/icon.png" alt="logo" width="144" height="130" />
+          </Link>
+        </div>
+        <Navlinks />
       </nav>
     </div>
   );
