@@ -1,7 +1,7 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
-import Navlinks from "./Navlinks.js";
+import Navlinks from "./NavlinksAfterLogin.js";
 import "./Navbar.css";
 import NavbarScroll from "../NavbarScroll.js";
 import { Link, useLocation } from "react-router-dom";

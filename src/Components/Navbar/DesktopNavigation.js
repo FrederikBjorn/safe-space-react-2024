@@ -1,19 +1,31 @@
-import React from "react";
-import Navlinks from "./Navlinks.js";
+import React, { useEffect, useState } from "react";
+import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
+import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
 import NavbarScroll from "../NavbarScroll.js";
 import { Link, useLocation } from "react-router-dom";
 
 function DesktopNavigation() {
-  const location = useLocation(); // useLocation hook to access the current path
+  const location = useLocation();
+  const [authenticatedUser, setAuthenticatedUser] = useState(false); // assuming false means not authenticated
+
+  // Check if the user is authenticated or based on path
+  useEffect(() => {
+    // You can update this based on your auth logic
+    if (location.pathname === "/") {
+      setAuthenticatedUser(false);
+    } else {
+      setAuthenticatedUser(true);
+    }
+  }, [location]);
 
   NavbarScroll("navbar-desktop");
 
   // Function to handle logo click
   const handleLogoClick = (e) => {
     if (location.pathname === "/") {
-      e.preventDefault(); // Prevent the default navigation
-      window.location.reload(); // Reload the page
+      e.preventDefault();
+      window.location.reload();
     }
   };
 
@@ -25,7 +37,7 @@ function DesktopNavigation() {
             <img src="images/icon.png" alt="logo" width="100" height="90" />
           </Link>
         </div>
-        <Navlinks />
+        {authenticatedUser ? <NavlinksAfterLogin /> : <NavlinksBeforeLogin />}
       </nav>
     </div>
   );

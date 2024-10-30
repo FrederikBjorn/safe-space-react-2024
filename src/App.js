@@ -1,13 +1,14 @@
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
-import { Route, Routes } from "react-router-dom";
+import LandingPageHero from "./Pages/LandingPage/LandingPageHero";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        
+        <Route path="/" element={<LandingPageHero />} />
       </Routes>
     </>
   );
