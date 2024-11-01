@@ -1,38 +1,58 @@
 import { React, useState } from "react";
 
-export default function LoginProfessionalUser() {
+export default function LoginProfessionalUser({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
-  const [password, setpassword] = useState("");
+  const [password, setPassword] = useState("");
 
-  function handleUserName(username) {
-    setUsername(username);
+  function handleUserName(event) {
+    setUsername(event.target.value);
   }
 
-  function handlePassword(password) {
-    setpassword(password);
+  function handlePassword(event) {
+    setPassword(event.target.value);
+  }
+
+  function handleLogin() {
+    // Simple validation for testing purposes
+    if (username === "hej" && password === "hejhej") {
+      setIsLoggedIn(true); // Update login status on successful login
+      alert("Login successful");
+    } else {
+      alert("Invalid username or password");
+    }
   }
 
   return (
-    <form className="loginForm">
+    <form
+      className="loginForm"
+      onSubmit={(e) => {
+        e.preventDefault(); // Prevent page reload
+        handleLogin();
+      }}
+    >
       {/*forms for username and password*/}
 
-      <h2>Login as a Professional user upon referal</h2>
+      <h2>Login as a Professional user</h2>
 
+      {/*logic for handeling the user login - username*/}
       <label htmlFor="userName"> Login </label>
       <input
         className="userName"
         type="text"
         placeholder="Enter user name"
-        onChange={(e) => handleUserName(e)}
+        onChange={handleUserName}
       />
+
+      {/*logic for handeling the user login - password*/}
+
       <label htmlFor="password"> Password </label>
       <input
         className="password"
         type="password"
         placeholder="Enter password"
-        onChange={(e) => handlePassword(e)}
+        onChange={handlePassword}
       />
-      <button>Login</button>
+      <button type="submit">Login</button>
     </form>
   );
 }
