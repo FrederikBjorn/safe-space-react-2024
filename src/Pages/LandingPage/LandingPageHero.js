@@ -19,7 +19,7 @@ function LandingPageHero() {
       <h1>Welcome to SafeSpace</h1>
 
       <form className="loginForm">
-        <lable> Login as </lable>
+        <label> Login as </label>
         <button type="button" className="formButton" onClick={handlePatient}>
           Patient user
         </button>
