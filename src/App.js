@@ -5,6 +5,7 @@ import LandingPageHero from "./Pages/LandingPage/LandingPageHero";
 import { Routes, Route } from "react-router-dom";
 import LoginPatientUser from "./Pages/LandingPage/loginPatientUser";
 import LoginProfessionalUser from "./Pages/LandingPage/loginProfessionalUser";
+import AdminPage from "./Pages/LandingPage/AdminPage";
 import Parse from "parse";
 
 // Your Parse initialization configuration goes here
@@ -23,6 +24,8 @@ function App() {
       {/*Only rendering the navbar if patien or prof is logged in*/}
       <Routes>
         <Route path="/" element={<LandingPageHero />} />
+        <Route path="/adminpage" element={<AdminPage />} />
+
         <Route
           path="/loginPatientUser"
           element={<LoginPatientUser setIsLoggedIn={setIsLoggedIn} />}

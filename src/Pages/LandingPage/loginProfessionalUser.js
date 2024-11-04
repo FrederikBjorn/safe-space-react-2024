@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import Parse from "parse"; // Import Parse to use it directly here
+import { loginUser } from "../../Components/authService"; // Import login function from authService
 
 export default function LoginProfessionalUser({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
@@ -15,7 +16,15 @@ export default function LoginProfessionalUser({ setIsLoggedIn }) {
 
   //hanle the login, as an async function, e.g. on a different thread.
   async function handleLogin() {
-    try {
+    const user = await loginUser(username, password);
+
+    if (user) {
+      setIsLoggedIn(true);
+      alert("Login successful");
+    } else {
+      alert("Invalid username or password :(:(");
+    }
+    /*
       // create a query to search for user in the patientUser table in db
       const query = new Parse.Query("professionalUser");
       query.equalTo("userName", username);
@@ -34,7 +43,7 @@ export default function LoginProfessionalUser({ setIsLoggedIn }) {
     } catch (error) {
       console.error("Error logging in:", error);
       alert("We've had a proffesional login error, please try again, sry");
-    }
+    }*/
     // Simple validation for testing purposes, can be removed later
     /*if (username === "hej" && password === "hejhej") {
       setIsLoggedIn(true); // Update login status on successful login
