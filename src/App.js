@@ -7,6 +7,7 @@ import LoginPatientUser from "./Pages/Login/loginPatientUser";
 import LoginProfessionalUser from "./Pages/Login/loginProfessionalUser";
 import AdminPage from "./Pages/Login/AdminPage";
 import Parse from "parse";
+import Chat from "./Pages/Chat/Chat";
 
 // Your Parse initialization configuration goes here
 const PARSE_APPLICATION_ID = "QuGtog6ad13b02XIRbK4johVN1xoqHc334Yj3a48"; //from back4app --> app settings --> security & keys
@@ -23,7 +24,11 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/adminpage" element={<AdminPage />} />
         <Route path="/loginPatientUser" element={<LoginPatientUser />} />
-        <Route path="/loginTherapistUser" element={<LoginProfessionalUser />} />
+        <Route
+          path="/loginProfessionalUser"
+          element={<LoginProfessionalUser />}
+        />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </>
   );

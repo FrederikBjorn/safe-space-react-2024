@@ -6,24 +6,29 @@ import Parse from "parse";
 
 function Navbar() {
   const [authenticatedUser, setAuthenticatedUser] = useState(false); // assuming false means not authenticated
-  const currentUserCheck = Parse.User.current();
 
-  // Check if the user is authenticated or based on path
+  // Check if the user is authenticated
   useEffect(() => {
-    // You can update this based on your auth logic
-    if (currentUserCheck) {
-      console.log("currentUserCheck = true");
-      setAuthenticatedUser(true);
+    const currentUserCheck = Parse.User.current();
+
+    if (currentUserCheck === !null) {
+      console.log("currentUser is not null");
+      if (currentUserCheck.authenticated()) {
+        console.log("currentUserCheck = true");
+        setAuthenticatedUser(true);
+      } else {
+        console.log("currentUserCheck = false");
+        setAuthenticatedUser(false);
+      }
     } else {
-      console.log("currentUserCheck = false");
-      setAuthenticatedUser(false);
+      console.log("currentUser is null");
     }
-  }, [currentUserCheck]);
+  }, []);
 
   return (
     <>
-      <DesktopNavigation authenticatedUser />
-      <MobileNavigation authenticatedUser />
+      <DesktopNavigation authenticatedUser={authenticatedUser} />
+      <MobileNavigation authenticatedUser={authenticatedUser} />
     </>
   );
 }

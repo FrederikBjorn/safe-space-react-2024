@@ -72,7 +72,7 @@
   }
 
   .text-header {
-    font-size: 24px;
+    font-size: 22px;
     line-height: normal;
     font-weight: normal;
   }
@@ -94,4 +94,8 @@
 
 .bg-blue {
   background-color: #c0dcf6;
+}
+
+.bg-white {
+  background-color: #ffff;
 }

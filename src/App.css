@@ -59,9 +59,30 @@ button:hover {
   background-color: #257a8b;
 }
 
+#register {
+  width: 400px;
+}
+
+input {
+  color: #575757;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  width: 300px;
+  border: 0.5px solid #575757;
+}
+
+*:focus {
+  outline: 1px solid #257a8b; /* Add width and style */
+}
 @media (max-width: 768px) {
   body {
     font-size: 14px;
     font-weight: 250;
+  }
+
+  input {
+    width: 175px;
   }
 }

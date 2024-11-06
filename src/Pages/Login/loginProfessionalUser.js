@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import { loginUser } from "../../Components/authService"; // Import login function from authService
+import "./loginUser.css";
 
-export default function LoginProfessionalUser({ setIsLoggedIn }) {
+export default function LoginProfessionalUser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +19,6 @@ export default function LoginProfessionalUser({ setIsLoggedIn }) {
     const user = await loginUser(username, password);
 
     if (user) {
-      setIsLoggedIn(true);
       alert("Login successful");
     } else {
       alert("Invalid username or password :(:(");
@@ -35,27 +35,36 @@ export default function LoginProfessionalUser({ setIsLoggedIn }) {
     >
       {/*forms for username and password*/}
 
-      <h2>Login as a Professional user</h2>
+      <div className="login-square container-sm bg-white">
+        <h2 className="login-header text-header">Login as a Therapist user</h2>
 
-      {/*logic for handeling the user login - username*/}
-      <label htmlFor="userName"> Login </label>
-      <input
-        className="userName"
-        type="text"
-        placeholder="Enter user name"
-        onChange={handleUserName}
-      />
+        <div className="forms">
+          {/*logic for handeling the user login - username*/}
+          <div className="form-container">
+            {/* <label htmlFor="userName"> Login </label> */}
+            <input
+              className="userName message-text bg-white"
+              type="text"
+              placeholder="Enter user name"
+              onChange={handleUserName}
+            />
+          </div>
 
-      {/*logic for handeling the user login - password*/}
+          {/*logic for handeling the user login - password*/}
 
-      <label htmlFor="password"> Password </label>
-      <input
-        className="password"
-        type="password"
-        placeholder="Enter password"
-        onChange={handlePassword}
-      />
-      <button type="submit">Login</button>
+          <div className="form-container">
+            {/* <label htmlFor="password"> Password </label> */}
+            <input
+              className="password message-text bg-white"
+              type="password"
+              placeholder="Enter password"
+              onChange={handlePassword}
+            />
+          </div>
+        </div>
+
+        <button type="submit">Login</button>
+      </div>
     </form>
   );
 }

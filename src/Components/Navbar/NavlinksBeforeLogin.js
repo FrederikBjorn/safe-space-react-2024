@@ -7,7 +7,7 @@ function Navlinks({ isClicked, closeMenu }) {
     <nav className="navlinks">
       <ul>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/loginTherapistUser">Therapist Log in</Link>
+          <Link to="/loginProfessionalUser">Therapist Log in</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
           <Link to="/loginPatientUser">Patient Log in</Link>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import bcrypt from "bcryptjs";
 import Parse from "parse";
+import "./AdminPage.css"
 
 //this is the admin page for adding elements into the databse, for patient and professional users
 //should be handled by an administrator of safespace only
