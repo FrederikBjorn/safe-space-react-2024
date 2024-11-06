@@ -11,6 +11,12 @@ html {
   overscroll-behavior: none;
 }
 
+br {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 5px; /* change this to whatever height you want it */
+}
+
 body {
   font-family: "Inter", sans-serif;
   font-size: 16px;
@@ -34,7 +40,7 @@ img {
 }
 
 button {
-  background-color: #575757; /* Green */
+  background-color: #575757;
   border: none;
   padding: 11px 34px;
   border-radius: 50px;
@@ -51,4 +57,11 @@ button {
 
 button:hover {
   background-color: #257a8b;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    font-weight: 250;
+  }
 }

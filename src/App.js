@@ -1,7 +1,7 @@
 import "./App.css";
 import "./Utilities.css";
 import Navbar from "./Components/Navbar/Navbar";
-import LandingPageHero from "./Pages/LandingPage/LandingPageHero";
+import LandingPage from "./Pages/LandingPage/LandingPage";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<LandingPageHero />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </>
   );

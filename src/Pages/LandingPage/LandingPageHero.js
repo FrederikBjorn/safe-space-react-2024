@@ -4,20 +4,25 @@ import "./LandingPageHero.css";
 function LandingPageHero() {
   return (
     <>
-      <section className="hero">
+      <section className="hero bg-blue">
         <div className="container-lg">
           <div className="hero-contents">
             <div className="hero-left">
-              <p className="text-xl-header text-center">
-                An online room for conversation while you wait!
-              </p>
-              <div className="button-text">
-                <p className="text-standard">Have a referral?</p>
-                <button className="login" type="button">
-                  Log in
-                </button>
+              <div className="hero-left-text">
+                <p className="text-xl-header text-center">
+                  An online room for conversation while you wait!
+                </p>
+              </div>
+              <div className="hero-left-button">
+                <div className="button-text">
+                  <p className="text-standard">Have a referral?</p>
+                  <button className="login" type="button">
+                    Log in
+                  </button>
+                </div>
               </div>
             </div>
+
             <div className="hero-right">
               <img src="Images/hands.png" alt="hands" />
             </div>

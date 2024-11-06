@@ -1,10 +1,5 @@
 .hero {
-  margin-top: 115px;
-  padding: 50px 0px;
-  background-color: #c0dcf6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 180px 50px 30px;
 }
 
 .hero-contents {
@@ -38,9 +33,19 @@
 }
 
 .hero-contents .hero-left {
-  flex: 0 0 35%;
+  flex: 1 1 35%;
 }
 
 .hero-contents .hero-right {
-  flex: 0 0 65%;
+  flex: 1 1 65%;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 160px 50px 50px;
+  }
+
+  .hero-contents {
+    flex-direction: column-reverse;
+  }
 }
