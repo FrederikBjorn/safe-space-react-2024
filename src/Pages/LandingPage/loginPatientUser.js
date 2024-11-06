@@ -24,35 +24,6 @@ export default function LoginPatientUser({ setIsLoggedIn }) {
     } else {
       alert("Invalid username or password :(:(");
     }
-    /*
-    try {
-      // create a query to search for user in the patientUser table in db
-      const query = new Parse.Query("patientUser");
-      query.equalTo("userName", username);
-
-      //execute the quetry to get the user
-      const user = await query.first();
-
-      if (user && user.get("password") === password) {
-        // if the password is an exact match, log in user
-        setIsLoggedIn(true);
-        alert("Login Successful, YAAY!");
-      } else {
-        // of no user found or password did not match
-        alert("no user found or password did not match, sorry");
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-      alert("We've had a login error, please try again, sry");
-    }*/
-
-    // Simple validation for testing purposes, can be removed later
-    /*if (username === "hej" && password === "hejhej") {
-      setIsLoggedIn(true); // Update login status on successful login
-      alert("Login successful");
-    } else {
-      alert("Invalid username or password");
-    }*/
   }
 
   return (
