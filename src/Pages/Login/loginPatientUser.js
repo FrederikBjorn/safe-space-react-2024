@@ -1,8 +1,7 @@
 import { React, useState } from "react";
-import Parse from "parse"; // Import Parse to use it directly here
 import { loginUser } from "../../Components/authService"; // Import login function from authService
 
-export default function LoginProfessionalUser({ setIsLoggedIn }) {
+export default function LoginPatientUser({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,7 +35,7 @@ export default function LoginProfessionalUser({ setIsLoggedIn }) {
     >
       {/*forms for username and password*/}
 
-      <h2>Login as a Professional user</h2>
+      <h2>Login as a Patient user upon referal</h2>
 
       {/*logic for handeling the user login - username*/}
       <label htmlFor="userName"> Login </label>

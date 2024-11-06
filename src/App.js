@@ -1,12 +1,11 @@
-import { useState } from "react";
 import "./App.css";
 import "./Utilities.css";
 import Navbar from "./Components/Navbar/Navbar";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import { Routes, Route } from "react-router-dom";
-import LoginPatientUser from "./Pages/LandingPage/loginPatientUser";
-import LoginProfessionalUser from "./Pages/LandingPage/loginProfessionalUser";
-import AdminPage from "./Pages/LandingPage/AdminPage";
+import LoginPatientUser from "./Pages/Login/loginPatientUser";
+import LoginProfessionalUser from "./Pages/Login/loginProfessionalUser";
+import AdminPage from "./Pages/Login/AdminPage";
 import Parse from "parse";
 
 // Your Parse initialization configuration goes here
@@ -17,24 +16,14 @@ Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
 Parse.serverURL = PARSE_HOST_URL;
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   return (
     <>
-      {isLoggedIn && <Navbar />}
-      {/*Only rendering the navbar if patien or prof is logged in*/}
+      <Navbar />
       <Routes>
-        <Route path="/" element={<LandingPageHero />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/adminpage" element={<AdminPage />} />
-
-        <Route
-          path="/loginPatientUser"
-          element={<LoginPatientUser setIsLoggedIn={setIsLoggedIn} />}
-        />
-        <Route
-          path="/loginProfessionalUser"
-          element={<LoginProfessionalUser setIsLoggedIn={setIsLoggedIn} />}
-        />
+        <Route path="/loginPatientUser" element={<LoginPatientUser />} />
+        <Route path="/loginTherapistUser" element={<LoginProfessionalUser />} />
       </Routes>
     </>
   );

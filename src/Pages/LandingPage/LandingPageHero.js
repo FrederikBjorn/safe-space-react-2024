@@ -1,18 +1,7 @@
 import { React } from "react";
 import "./LandingPageHero.css";
-import { useNavigate } from "react-router-dom";
 
 function LandingPageHero() {
-  const navigate = useNavigate();
-
-  function handlePatient() {
-    navigate("/loginPatientUser");
-  }
-
-  function handleProfessional() {
-    navigate("/loginProfessionalUser");
-  }
-
   return (
     <>
       <section className="hero bg-blue">
