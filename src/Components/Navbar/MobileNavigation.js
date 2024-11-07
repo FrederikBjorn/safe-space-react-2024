@@ -1,12 +1,15 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseOutline } from "react-icons/io5";
 import { useState } from "react";
-import Navlinks from "./NavlinksAfterLogin.js";
+import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
+import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../AuthContext"; // Import useAuth
 
 function MobileNavigation() {
   const [click, setClick] = useState(false);
+  const { authenticatedUser } = useAuth();
 
   const Hamburger = (
     <RxHamburgerMenu
@@ -50,7 +53,13 @@ function MobileNavigation() {
           </Link>
         </div>
         {click ? Close : Hamburger}
-        {click && <Navlinks isClicked={true} closeMenu={closeMenu} />}
+
+        {click &&
+          (authenticatedUser ? (
+            <NavlinksAfterLogin isClicked={true} closeMenu={closeMenu} />
+          ) : (
+            <NavlinksBeforeLogin isClicked={true} closeMenu={closeMenu} />
+          ))}
       </nav>
     </div>
   );

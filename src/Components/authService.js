@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import Parse from "parse";
+import { Await } from "react-router-dom";
 
 // Register a new user with hashed password
 export async function registerUser(username, password) {
@@ -15,29 +16,5 @@ export async function registerUser(username, password) {
   } catch (error) {
     console.error("Error registering user:", error);
     return false;
-  }
-}
-
-// Login a user by checking hashed password
-export async function loginUser(username, password) {
-  try {
-    const query = new Parse.Query("patientUser"); // Use exact class name "patientUser"
-    query.equalTo("userName", username); // Match field names exactly
-
-    const user = await query.first();
-
-    if (user) {
-      const storedHashedPassword = user.get("password");
-      const isPasswordValid = await bcrypt.compare(
-        password,
-        storedHashedPassword
-      );
-
-      return isPasswordValid ? user : null; // Return user if valid, otherwise null
-    }
-    return null;
-  } catch (error) {
-    console.error("Error logging in:", error);
-    return null;
   }
 }

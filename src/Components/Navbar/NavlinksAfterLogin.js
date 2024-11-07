@@ -1,8 +1,18 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../AuthContext"; // Import useAuth
 
-function Navlinks({ isClicked, closeMenu }) {
+function NavlinksAfterLogin({ isClicked, closeMenu }) {
+  const { setAuthenticatedUser } = useAuth();
+
+  const handleLogout = () => {
+    setAuthenticatedUser(null);
+    if (isClicked) {
+      closeMenu();
+    }
+  };
+
   return (
     <nav className="navlinks">
       <ul>
@@ -21,7 +31,7 @@ function Navlinks({ isClicked, closeMenu }) {
         <li onClick={() => isClicked && closeMenu()}>
           <Link to="/">Exercises</Link>
         </li>
-        <li onClick={() => isClicked && closeMenu()}>
+        <li onClick={handleLogout}>
           <Link to="/">Log Out</Link>
         </li>
       </ul>
@@ -29,4 +39,4 @@ function Navlinks({ isClicked, closeMenu }) {
   );
 }
 
-export default Navlinks;
+export default NavlinksAfterLogin;

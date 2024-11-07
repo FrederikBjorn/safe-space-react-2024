@@ -3,11 +3,12 @@ import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
 import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../AuthContext"; // Import useAuth
 
-function DesktopNavigation(authenticatedUser) {
+function DesktopNavigation() {
   const location = useLocation();
+  const { authenticatedUser } = useAuth(); // Get authenticatedUser from context
 
-  // Function to handle logo click
   const handleLogoClick = (e) => {
     if (location.pathname === "/") {
       e.preventDefault();
@@ -23,7 +24,7 @@ function DesktopNavigation(authenticatedUser) {
             <img src="images/icon.png" alt="logo" width="100" height="90" />
           </Link>
         </div>
-        {authenticatedUser ? <NavlinksBeforeLogin /> : <NavlinksAfterLogin />}
+        {authenticatedUser ? <NavlinksAfterLogin /> : <NavlinksBeforeLogin />}
       </nav>
     </div>
   );

@@ -3,18 +3,17 @@ import "./Utilities.css";
 import Navbar from "./Components/Navbar/Navbar";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import { Routes, Route } from "react-router-dom";
-import LoginPatientUser from "./Pages/Login/loginPatientUser";
-import LoginProfessionalUser from "./Pages/Login/loginProfessionalUser";
-import AdminPage from "./Pages/Login/AdminPage";
+import LoginPatientUser from "./Components/Login/loginPatientUser";
+import AdminPage from "./Components/Login/AdminPage";
 import Parse from "parse";
 import Chat from "./Pages/Chat/Chat";
 
 // Your Parse initialization configuration goes here
-const PARSE_APPLICATION_ID = "QuGtog6ad13b02XIRbK4johVN1xoqHc334Yj3a48"; //from back4app --> app settings --> security & keys
-const PARSE_HOST_URL = "https://parseapi.back4app.com/"; //form server settings --> host url in the back4app platform
-const PARSE_JAVASCRIPT_KEY = "rMsoyGV5w8xzNM59cuLAx4lX7LkwMnNdLNC1EUSB"; //from back4app --> app settings --> security & keys
-Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
-Parse.serverURL = PARSE_HOST_URL;
+const app_id = process.env.REACT_APP_PARSE_APP_ID; //from back4app --> app settings --> security & keys
+const host_url = process.env.REACT_APP_PARSE_HOST_URL; //form server settings --> host url in the back4app platform
+const javascript_key = process.env.REACT_APP_PARSE_JAVASCRIPT_KEY; //from back4app --> app settings --> security & keys
+Parse.initialize(app_id, javascript_key);
+Parse.serverURL = host_url;
 
 function App() {
   return (
@@ -24,10 +23,6 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/adminpage" element={<AdminPage />} />
         <Route path="/loginPatientUser" element={<LoginPatientUser />} />
-        <Route
-          path="/loginProfessionalUser"
-          element={<LoginProfessionalUser />}
-        />
         <Route path="/chat" element={<Chat />} />
       </Routes>
     </>

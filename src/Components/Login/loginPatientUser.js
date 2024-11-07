@@ -1,25 +1,55 @@
 import { React, useState } from "react";
-import { loginUser } from "../../Components/authService"; // Import login function from authService
 import "./loginUser.css";
 import { useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs";
+import Parse from "parse";
+import { useAuth } from "../AuthContext"; // Import useAuth
 
 export default function LoginPatientUser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Use the hook correctly
+  const navigate = useNavigate();
+  const { setAuthenticatedUser } = useAuth(); // Get setAuthenticatedUser from context
 
-  function handleUserName(event) {
-    setUsername(event.target.value);
-  }
+  const loginUser = async () => {
+    try {
+      const query = new Parse.Query("patientUser");
+      query.equalTo("userName", username);
 
-  function handlePassword(event) {
-    setPassword(event.target.value);
-  }
+      const user = await query.first();
+
+      if (user) {
+        const storedHashedPassword = user.get("password");
+        const isPasswordValid = await bcrypt.compare(
+          password,
+          storedHashedPassword
+        );
+
+        if (isPasswordValid) {
+          setAuthenticatedUser(user); // Update the context state
+          console.log("Login successful:", user.get("userName"));
+
+          setUsername("");
+          setPassword("");
+          navigate("/chat");
+          return true;
+        } else {
+          console.error("Invalid password.");
+          return false;
+        }
+      } else {
+        console.error("User not found.");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      return false;
+    }
+  };
 
   //hanle the login, as an async function, e.g. on a different thread.
   async function handleLogin() {
-    const user = await loginUser(username, password);
-
+    const user = await loginUser();
     if (user) {
       alert("Login successful");
       navigate("/chat");
@@ -49,7 +79,7 @@ export default function LoginPatientUser() {
               className="userName message-text bg-white"
               type="text"
               placeholder="Enter user name"
-              onChange={handleUserName}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </div>
 
@@ -61,7 +91,7 @@ export default function LoginPatientUser() {
               className="password message-text bg-white"
               type="password"
               placeholder="Enter password"
-              onChange={handlePassword}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
         </div>
