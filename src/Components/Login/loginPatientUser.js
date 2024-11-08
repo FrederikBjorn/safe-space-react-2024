@@ -1,69 +1,57 @@
 import { React, useState } from "react";
 import "./loginUser.css";
 import { useNavigate } from "react-router-dom";
-import bcrypt from "bcryptjs";
 import Parse from "parse";
-import { useAuth } from "../AuthContext"; // Import useAuth
 
 export default function LoginPatientUser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setAuthenticatedUser } = useAuth(); // Get setAuthenticatedUser from context
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // Function that will return current user and also update current username
+  const getCurrentUser = async function () {
+    const currentUser = await Parse.User.current();
+    // Update state variable holding current user
+    setCurrentUser(currentUser);
+    return currentUser;
+  };
 
   const loginUser = async () => {
     try {
-      const query = new Parse.Query("patientUser");
-      query.equalTo("userName", username);
+      const loggedInUser = await Parse.User.logIn(username, password);
 
-      const user = await query.first();
-
-      if (user) {
-        const storedHashedPassword = user.get("password");
-        const isPasswordValid = await bcrypt.compare(
-          password,
-          storedHashedPassword
-        );
-
-        if (isPasswordValid) {
-          setAuthenticatedUser(user); // Update the context state
-          console.log("Login successful:", user.get("userName"));
-
-          setUsername("");
-          setPassword("");
-          navigate("/chat");
-          return true;
-        } else {
-          console.error("Invalid password.");
-          return false;
-        }
-      } else {
-        console.error("User not found.");
-        return false;
-      }
+      console.log("Username:", username);
+      console.log("Password:", password);
+      // logIn returns the corresponding ParseUser object
+      alert(
+        `Success! User ${loggedInUser.get(
+          "username"
+        )} has successfully signed in!`
+      );
+      // To verify that this is in fact the current user, `current` can be used
+      const currentUser = await Parse.User.current();
+      console.log(loggedInUser === currentUser);
+      // Clear input fields
+      setUsername("");
+      setPassword("");
+      // Update state variable holding current user
+      getCurrentUser();
+      navigate("/chat");
+      return true;
     } catch (error) {
-      console.error("Error logging in:", error);
+      // Error can be caused by wrong parameters or lack of Internet connection
+      alert(`Error! ${error.message}`);
       return false;
     }
   };
-
-  //hanle the login, as an async function, e.g. on a different thread.
-  async function handleLogin() {
-    const user = await loginUser();
-    if (user) {
-      alert("Login successful");
-      navigate("/chat");
-    } else {
-      alert("Invalid username or password :(:(");
-    }
-  }
 
   return (
     <form
       className="loginForm"
       onSubmit={(e) => {
         e.preventDefault(); // Prevent page reload
-        handleLogin();
+        loginUser();
       }}
     >
       {/*forms for username and password*/}

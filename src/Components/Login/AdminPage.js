@@ -1,7 +1,6 @@
 import { useState } from "react";
-import bcrypt from "bcryptjs";
 import Parse from "parse";
-import "./AdminPage.css"
+import "./AdminPage.css";
 
 //this is the admin page for adding elements into the databse, for patient and professional users
 //should be handled by an administrator of safespace only
@@ -42,17 +41,24 @@ export default function Admin() {
   //  add a patient user method, should be async
   const addPatientUser = async () => {
     try {
-      //hases the password as it enters the db, uses authService when unhashing
-      const hashedPassword = await bcrypt.hash(patientUser.password, 10);
-      const PatientUser = new Parse.Object("patientUser");
-      PatientUser.set("userName", patientUser.userName);
-      PatientUser.set("password", hashedPassword);
-      PatientUser.set("email", patientUser.email);
-      PatientUser.set("fullName", patientUser.fullName);
-      await PatientUser.save();
-      alert("Patient user added successfully!");
-      // Clear form after submission
-      setPatientUser({ userName: "", password: "", email: "", fullName: "" });
+      // Note that these values come from state variables that we've declared before
+      const usernameValue = patientUser.userName;
+      const passwordValue = patientUser.password;
+      try {
+        // Since the signUp method returns a Promise, we need to call it using await
+        const createdUser = await Parse.User.signUp(
+          usernameValue,
+          passwordValue
+        );
+        alert(
+          `Success! User ${createdUser.getUsername()} was successfully created!`
+        );
+        return true;
+      } catch (error) {
+        // signUp can fail if any parameter is blank or failed an uniqueness check on the server
+        alert(`Error! ${error}`);
+        return false;
+      }
     } catch (error) {
       console.error("Error adding patient user:", error);
       alert("Failed to add patient user.");
@@ -62,11 +68,9 @@ export default function Admin() {
   // Function to add a professional user
   const addProfessionalUser = async () => {
     try {
-      //hases the password as it enters the db, uses authService when unhashing
-      const hashedPassword = await bcrypt.hash(professionalUser.password, 10);
       const ProfessionalUser = new Parse.Object("professionalUser");
       ProfessionalUser.set("userName", professionalUser.userName);
-      ProfessionalUser.set("password", hashedPassword);
+      ProfessionalUser.set("password", ProfessionalUser.password);
       ProfessionalUser.set("email", professionalUser.email);
       ProfessionalUser.set("fullName", professionalUser.fullname);
       await ProfessionalUser.save();

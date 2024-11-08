@@ -5,11 +5,11 @@ import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
 import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../AuthContext"; // Import useAuth
+import Parse from "parse";
 
 function MobileNavigation() {
   const [click, setClick] = useState(false);
-  const { authenticatedUser } = useAuth();
+  const currentUser = Parse.User.current();
 
   const Hamburger = (
     <RxHamburgerMenu
@@ -34,6 +34,7 @@ function MobileNavigation() {
   function closeMenu() {
     setClick(false);
   }
+
   const location = useLocation(); // Get the current location
 
   // Function to handle logo click
@@ -55,7 +56,7 @@ function MobileNavigation() {
         {click ? Close : Hamburger}
 
         {click &&
-          (authenticatedUser ? (
+          (currentUser ? (
             <NavlinksAfterLogin isClicked={true} closeMenu={closeMenu} />
           ) : (
             <NavlinksBeforeLogin isClicked={true} closeMenu={closeMenu} />

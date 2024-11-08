@@ -3,11 +3,11 @@ import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
 import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../AuthContext"; // Import useAuth
+import Parse from "parse";
 
 function DesktopNavigation() {
   const location = useLocation();
-  const { authenticatedUser } = useAuth(); // Get authenticatedUser from context
+  const currentUser = Parse.User.current();
 
   const handleLogoClick = (e) => {
     if (location.pathname === "/") {
@@ -24,7 +24,7 @@ function DesktopNavigation() {
             <img src="images/icon.png" alt="logo" width="100" height="90" />
           </Link>
         </div>
-        {authenticatedUser ? <NavlinksAfterLogin /> : <NavlinksBeforeLogin />}
+        {currentUser ? <NavlinksAfterLogin /> : <NavlinksBeforeLogin />}
       </nav>
     </div>
   );
