@@ -1,0 +1,29 @@
+.loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 150px 50px;
+  height: 100vh;
+}
+
+.login-square {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 50px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 0px 5px #575757);
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+}

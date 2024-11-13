@@ -1,0 +1,101 @@
+/* Containers */
+.container-lg {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container-xs {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container-sm {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.container-md {
+  max-width: 1166px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Text Classes */
+.message-text {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: normal;
+}
+
+.text-xl-header {
+  font-size: 50px;
+  line-height: normal;
+  font-weight: bold;
+}
+
+.text-header {
+  font-size: 36px;
+  line-height: normal;
+  font-weight: normal;
+}
+
+.text-standard {
+  font-size: 22px;
+  line-height: normal;
+  font-weight: normal;
+}
+
+.text-quotes {
+  font-size: 20px;
+  line-height: normal;
+  font-weight: normal;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .message-text {
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: normal;
+  }
+
+  .text-xl-header {
+    font-size: 30px;
+    line-height: normal;
+    font-weight: bold;
+  }
+
+  .text-header {
+    font-size: 22px;
+    line-height: normal;
+    font-weight: normal;
+  }
+
+  .text-standard {
+    font-size: 16px;
+    line-height: normal;
+    font-weight: normal;
+  }
+
+  .text-quotes {
+    font-size: 14px;
+    line-height: normal;
+    font-weight: normal;
+  }
+}
+
+/* Backgrounds */
+
+.bg-blue {
+  background-color: #c0dcf6;
+}
+
+.bg-white {
+  background-color: #ffff;
+}

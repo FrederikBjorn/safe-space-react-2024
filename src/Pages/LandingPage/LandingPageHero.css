@@ -1,0 +1,51 @@
+.hero {
+  padding: 180px 50px 30px;
+}
+
+.hero-contents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-right img {
+  height: 100%;
+  width: 100%;
+  max-height: 358px;
+  max-width: 737px;
+}
+
+.button-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-contents .hero-left {
+  flex: 1 1 35%;
+}
+
+.hero-contents .hero-right {
+  flex: 1 1 65%;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 160px 50px 50px;
+  }
+
+  .hero-contents {
+    flex-direction: column-reverse;
+  }
+}

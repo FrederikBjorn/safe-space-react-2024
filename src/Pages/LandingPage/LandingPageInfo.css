@@ -1,0 +1,45 @@
+.landingPageInfo {
+  padding: 50px;
+}
+
+.landingPageInfo .container-md {
+  display: flex;
+  flex-direction: column;
+  gap: 110px;
+}
+
+.row-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 110px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0px;
+  gap: 35px;
+}
+
+.pic img {
+  width: 100%;
+  max-width: 161px;
+  max-height: 161px;
+}
+
+@media (max-width: 768px) {
+  .row-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pic img {
+    width: 100%;
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
