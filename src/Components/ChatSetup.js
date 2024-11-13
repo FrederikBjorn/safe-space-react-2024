@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./ChatSetup.css";
 import { Button, Input } from "antd";
-import Parse from "parse";
+import Parse, { Query } from "parse";
 import { LiveChat } from "./LiveChat";
 import "../../src/App.css";
+import userEvent from "@testing-library/user-event";
 
 export const ChatSetup = () => {
   // State variables holding input values and results
@@ -23,28 +24,31 @@ export const ChatSetup = () => {
       return false;
     }
 
-    // Check if sender nickname already exists, if not create new parse object
+    /*    // Check if sender nickname already exists, if not create new parse object
     let senderUserNameObject = null;
     try {
       const senderParseQuery = new Parse.Query("_User");
       senderParseQuery.equalTo("username", senderUserName);
       const senderParseQueryResult = await senderParseQuery.first();
+      console.log("sender User Name", senderUserName);
       if (
         senderParseQueryResult !== undefined &&
         senderParseQueryResult !== null
       ) {
+        console.log("senderParseQueryResult = null");
         senderUserNameObject = senderParseQueryResult;
       } else {
         senderUserNameObject = new Parse.Object("_User");
         senderUserNameObject.set("username", senderUserName);
         senderUserNameObject = await senderUserNameObject.save();
+        console.log("senderusernameobject = ", senderUserNameObject);
       }
     } catch (error) {
       alert(error);
       return false;
     }
 
-    // Check if receiver nickname already exists, if not create new parse object
+  // Check if receiver nickname already exists, if not create new parse object
     let receiverUserNameObject = null;
     try {
       const receiverParseQuery = new Parse.Query("_User");
@@ -64,11 +68,22 @@ export const ChatSetup = () => {
       alert(error);
       return false;
     }
+*/
 
     // Set nickname objects ids, so live chat component is instantiated
-    setSenderObjectId(senderUserNameObject.id);
-    setReceiverObjectId(receiverUserNameObject.id);
-    return true;
+    const currentUser = Parse.User.current();
+    const query = new Parse.Query(Parse.User);
+    query.equalTo("username", recevierUserName);
+    const user = await query.first();
+
+    if (user) {
+      setSenderObjectId(currentUser.id);
+      setReceiverObjectId(user.id);
+      return user;
+    } else {
+      console.log("User not found");
+      return null;
+    }
   };
 
   return (
