@@ -9,10 +9,8 @@ export default function LoginUser() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Function that will return current user and also update current username
   const getCurrentUser = async function () {
     const currentUser = await Parse.User.current();
-    // Update state variable holding current user
     setCurrentUser(currentUser);
     return currentUser;
   };
@@ -23,24 +21,19 @@ export default function LoginUser() {
 
       console.log("Username:", username);
       console.log("Password:", password);
-      // logIn returns the corresponding ParseUser object
       alert(
         `Success! User ${loggedInUser.get(
           "username"
         )} has successfully signed in!`
       );
-      // To verify that this is in fact the current user, `current` can be used
       const currentUser = await Parse.User.current();
       console.log(loggedInUser === currentUser);
-      // Clear input fields
       setUsername("");
       setPassword("");
-      // Update state variable holding current user
       getCurrentUser();
       navigate("/chat");
       return true;
     } catch (error) {
-      // Error can be caused by wrong parameters or lack of Internet connection
       alert(`Error! ${error.message}`);
       return false;
     }
@@ -50,19 +43,15 @@ export default function LoginUser() {
     <form
       className="loginForm"
       onSubmit={(e) => {
-        e.preventDefault(); // Prevent page reload
+        e.preventDefault();
         loginUser();
       }}
     >
-      {/*forms for username and password*/}
-
       <div className="login-square container-sm bg-white">
         <h2 className="login-header text-header">Log in</h2>
 
         <div className="forms">
-          {/*logic for handeling the user login - username*/}
           <div className="form-container">
-            {/* <label htmlFor="userName"> Login </label> */}
             <input
               className="userName message-text bg-white"
               type="text"
@@ -71,10 +60,7 @@ export default function LoginUser() {
             />
           </div>
 
-          {/*logic for handeling the user login - password*/}
-
           <div className="form-container">
-            {/* <label htmlFor="password"> Password </label> */}
             <input
               className="password message-text bg-white"
               type="password"

@@ -12,9 +12,9 @@ html {
 }
 
 br {
-  display: block; /* makes it have a width */
-  content: ""; /* clears default height */
-  margin-top: 5px; /* change this to whatever height you want it */
+  display: block;
+  content: "";
+  margin-top: 5px;
 }
 
 body {
@@ -85,7 +85,7 @@ select {
 }
 
 *:focus {
-  outline: 1px solid #257a8b; /* Add width and style */
+  outline: 1px solid #257a8b;
 }
 @media (max-width: 768px) {
   body {
