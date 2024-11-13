@@ -53,6 +53,7 @@ button {
   font-style: normal;
   font-weight: 350;
   line-height: normal;
+  cursor: pointer;
 }
 
 button:hover {
@@ -64,6 +65,16 @@ button:hover {
 }
 
 input {
+  color: #575757;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  width: 300px;
+  border: 0.5px solid #575757;
+}
+
+select {
   color: #575757;
   padding: 10px;
   border-radius: 10px;

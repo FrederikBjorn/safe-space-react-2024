@@ -3,7 +3,7 @@ import "./loginUser.css";
 import { useNavigate } from "react-router-dom";
 import Parse from "parse";
 
-export default function LoginPatientUser() {
+export default function LoginUser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ export default function LoginPatientUser() {
       {/*forms for username and password*/}
 
       <div className="login-square container-sm bg-white">
-        <h2 className="login-header text-header">Login as a Patient user</h2>
+        <h2 className="login-header text-header">Log in</h2>
 
         <div className="forms">
           {/*logic for handeling the user login - username*/}

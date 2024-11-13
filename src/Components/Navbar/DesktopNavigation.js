@@ -9,20 +9,11 @@ function DesktopNavigation() {
   const location = useLocation();
   const currentUser = Parse.User.current();
 
-  const handleLogoClick = (e) => {
-    if (location.pathname === "/") {
-      e.preventDefault();
-      window.location.reload();
-    }
-  };
-
   return (
     <div className="navbar" id="navbar-desktop">
       <nav className="DesktopNavigation">
         <div className="logo">
-          <Link to="/" onClick={handleLogoClick}>
-            <img src="images/icon.png" alt="logo" width="100" height="90" />
-          </Link>
+          <img src="images/icon.png" alt="logo" width="100" height="90" />
         </div>
         {currentUser ? <NavlinksAfterLogin /> : <NavlinksBeforeLogin />}
       </nav>

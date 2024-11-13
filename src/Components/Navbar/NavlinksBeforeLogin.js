@@ -7,10 +7,7 @@ function NavlinksBeforeLogin({ isClicked, closeMenu }) {
     <nav className="navlinks">
       <ul>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/loginProfessionalUser">Therapist Log in</Link>
-        </li>
-        <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/loginPatientUser">Patient Log in</Link>
+          <Link to="/login">Log in</Link>
         </li>
       </ul>
     </nav>

@@ -1,7 +1,10 @@
 import { React } from "react";
 import "./LandingPageHero.css";
+import { useNavigate } from "react-router-dom";
 
 function LandingPageHero() {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="hero bg-blue">
@@ -16,7 +19,11 @@ function LandingPageHero() {
               <div className="hero-left-button">
                 <div className="button-text">
                   <p className="text-standard">Have a referral?</p>
-                  <button className="login" type="button">
+                  <button
+                    className="login"
+                    type="button"
+                    onClick={() => navigate("/login")}
+                  >
                     Log in
                   </button>
                 </div>

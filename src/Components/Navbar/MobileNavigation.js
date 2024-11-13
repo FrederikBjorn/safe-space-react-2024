@@ -35,23 +35,13 @@ function MobileNavigation() {
     setClick(false);
   }
 
-  const location = useLocation(); // Get the current location
-
-  // Function to handle logo click
-  const handleLogoClick = (e) => {
-    if (location.pathname === "/") {
-      e.preventDefault(); // Prevent the default navigation
-      window.location.reload(); // Reload the page
-    }
-  };
+  const location = useLocation();
 
   return (
     <div className="navbar" id="navbar-mobile">
       <nav className="MobileNavigation">
         <div className="logo">
-          <Link to="/" onClick={handleLogoClick}>
-            <img src="Images/icon.png" alt="logo" width="100" height="90" />
-          </Link>
+          <img src="Images/icon.png" alt="logo" width="100" height="90" />
         </div>
         {click ? Close : Hamburger}
 

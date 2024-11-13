@@ -44,7 +44,7 @@ function NavlinksAfterLogin({ isClicked, closeMenu }) {
     <nav className="navlinks">
       <ul>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/">Home</Link>
+          <Link to="">Home</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
           <Link to="/">Chat</Link>
