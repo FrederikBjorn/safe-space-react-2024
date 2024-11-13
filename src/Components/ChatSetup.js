@@ -26,7 +26,7 @@ export const ChatSetup = () => {
     // Check if sender nickname already exists, if not create new parse object
     let senderUserNameObject = null;
     try {
-      const senderParseQuery = new Parse.Query("username");
+      const senderParseQuery = new Parse.Query("_User");
       senderParseQuery.equalTo("username", senderUserName);
       const senderParseQueryResult = await senderParseQuery.first();
       if (
@@ -35,7 +35,7 @@ export const ChatSetup = () => {
       ) {
         senderUserNameObject = senderParseQueryResult;
       } else {
-        senderUserNameObject = new Parse.Object("username");
+        senderUserNameObject = new Parse.Object("_User");
         senderUserNameObject.set("username", senderUserName);
         senderUserNameObject = await senderUserNameObject.save();
       }
@@ -47,7 +47,7 @@ export const ChatSetup = () => {
     // Check if receiver nickname already exists, if not create new parse object
     let receiverUserNameObject = null;
     try {
-      const receiverParseQuery = new Parse.Query("username");
+      const receiverParseQuery = new Parse.Query("_User");
       receiverParseQuery.equalTo("username", recevierUserName);
       const receiverParseQueryResult = await receiverParseQuery.first();
       if (
@@ -56,7 +56,7 @@ export const ChatSetup = () => {
       ) {
         receiverUserNameObject = receiverParseQueryResult;
       } else {
-        receiverUserNameObject = new Parse.Object("username");
+        receiverUserNameObject = new Parse.Object("_User");
         receiverUserNameObject.set("username", recevierUserName);
         receiverUserNameObject = await receiverUserNameObject.save();
       }
