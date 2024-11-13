@@ -1,12 +1,15 @@
-import React from 'react'
-import "./Chat.css"
+import React from "react";
+import "./Chat.css";
+import { ChatSetup } from "../../Components/ChatSetup";
 
 function Chat() {
   return (
-    <p className="woop">
-        YOU HAVE ARRIVED
-    </p>
-  )
+    <section className="chat">
+      <h3> Chat </h3>
+
+      <ChatSetup />
+    </section>
+  );
 }
 
-export default Chat
+export default Chat;
