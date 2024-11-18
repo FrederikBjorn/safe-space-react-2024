@@ -73,8 +73,13 @@ export const ChatSetup = () => {
     // Set nickname objects ids, so live chat component is instantiated
     const currentUser = Parse.User.current();
     const query = new Parse.Query(Parse.User);
+
+    console.log("recevierUserName: ", recevierUserName);
+
     query.equalTo("username", recevierUserName);
     const user = await query.first();
+
+    console.log("query returns: ", query);
 
     if (user) {
       setSenderObjectId(currentUser.id);
