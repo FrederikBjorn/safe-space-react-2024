@@ -1,17 +1,22 @@
 .navbar {
   position: fixed;
   top: 0;
-  background-color: #e1e5f2;
   width: 100%;
   transition: 0.5s;
-  z-index: 1000;
+  z-index: 2;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(249, 249, 248, 0.54) 40.5%,
+    #e1e5f2 100%
+  );
 }
 
 .DesktopNavigation {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 15px 80px;
+  padding: 5px 80px 35px;
 }
 
 nav {
@@ -35,6 +40,7 @@ nav ul li a {
   padding: 0px 35px;
   display: block;
   font-weight: normal;
+
 }
 
 ul li a:hover {
@@ -42,6 +48,7 @@ ul li a:hover {
   color: #257a8b;
   border-right: 3px solid #257a8b;
   border-left: 3px solid #257a8b;
+  
 }
 
 .MobileNavigation {

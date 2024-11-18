@@ -22,6 +22,9 @@ export default function AdminPage() {
 
       await newUser.signUp();
       alert(user.role + " user added successfully!");
+      const userProfile = new Parse.Object("user_profile");
+      userProfile.set("user", newUser.toPointer());
+      await userProfile.save();
     } catch (error) {
       alert(`Error: ${error.message}`);
     }
