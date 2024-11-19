@@ -9,6 +9,7 @@ export default function AdminPage() {
     email: "",
     fullName: "",
     role: "",
+    profilePic: null,
   });
 
   const addUser = async () => {
@@ -24,9 +25,22 @@ export default function AdminPage() {
       alert(user.role + " user added successfully!");
       const userProfile = new Parse.Object("user_profile");
       userProfile.set("user", newUser.toPointer());
+
+      if (user.profilePic) {
+        console.log("Profile pic found:", user.profilePic);
+        const parseFile = new Parse.File(user.profilePic.name, user.profilePic);
+        await parseFile.save();
+        console.log("Profile pic saved:", parseFile);
+        userProfile.set("profile_pic", parseFile);
+      } else {
+        console.log("No profile pic found.");
+      }
+
       await userProfile.save();
+      console.log("User profile saved successfully.");
     } catch (error) {
       alert(`Error: ${error.message}`);
+      console.error("Error details:", error);
     }
   };
 
@@ -86,7 +100,11 @@ export default function AdminPage() {
           <option value="patient">Patient</option>
           <option value="professional">Professional</option>
         </select>
-        <input type="hidden" name="role" value="patient" />
+        <input
+          type="file"
+          name="profilePic"
+          onChange={(e) => setUser({ ...user, profilePic: e.target.files[0] })}
+        />
         <button type="submit">Add User</button>
       </form>
     </div>

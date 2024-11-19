@@ -40,7 +40,6 @@ nav ul li a {
   padding: 0px 35px;
   display: block;
   font-weight: normal;
-
 }
 
 ul li a:hover {
@@ -48,14 +47,13 @@ ul li a:hover {
   color: #257a8b;
   border-right: 3px solid #257a8b;
   border-left: 3px solid #257a8b;
-  
 }
 
 .MobileNavigation {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .DesktopNavigation {
     display: none;
   }
@@ -65,7 +63,6 @@ ul li a:hover {
     flex-direction: row;
     justify-content: space-between;
     padding: 12px 40px 4px 40px;
-    background-color: #dbecff;
   }
 
   .navlinks ul {
