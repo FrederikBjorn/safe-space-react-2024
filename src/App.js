@@ -12,8 +12,11 @@ import { useEffect } from "react";
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
 const javascript_key = process.env.REACT_APP_PARSE_JAVASCRIPT_KEY;
+const liverQueryUrl = "ws://safespacereact.b4a.io";
+
 Parse.initialize(app_id, javascript_key);
 Parse.serverURL = host_url;
+Parse.liveQueryServerURL = liverQueryUrl;
 
 function App() {
   const { isLoading, fetchUserInfo, setIsLoadingTrue } = useUserStore();
