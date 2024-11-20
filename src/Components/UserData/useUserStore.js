@@ -12,33 +12,52 @@ export const useUserStore = create((set) => ({
       );
 
     try {
-      //Retrieve Current User
+      // Retrieve Current User
       const user = await Parse.User.current();
 
-      //Save Fill Name
+      // Save Full Name
       const fullName = user.get("fullName");
-      console.log("Fething info on user:", user.get("fullName"));
+      console.log("Fetching info on user:", user.get("fullName"));
 
-      //Fetch user data from the user_profile table
-      const UserProfile = await Parse.Object.extend("user_profile");
+      // Fetch user data from the user_profile table
+      const UserProfile = Parse.Object.extend("user_profile");
       const query = new Parse.Query(UserProfile);
       query.equalTo("user", user);
       const userProfile = await query.first();
 
-      //Get ChatId from user_profile
-      const userId = await userProfile.id;
-      console.log("User ID is :", userId);
+      // Get UserId from user_profile
+      const userId = userProfile.id;
+      console.log("User ID is:", userId);
 
-      //Get ProfilePicURL from user_profile
-      const profilePicUrl = await userProfile.get("profile_pic").url();
+      // Get ProfilePicURL from user_profile
+      const profilePicUrl = userProfile.get("profile_pic").url();
       console.log("Profile picture URL:", profilePicUrl);
 
-      //Get ChatId from user_profile
-      const chatId = await userProfile.get("chat").id;
-      console.log("Chat ID is :", chatId);
+      // Get ChatId from user_profile
+      const chatId = userProfile.get("chat").id;
+      console.log("Chat ID is:", chatId);
+
+      // Fetch other users associated with the same chat
+      const chatQuery = new Parse.Query(UserProfile);
+      chatQuery.equalTo("chat", userProfile.get("chat"));
+      const otherUsers = await chatQuery.find();
+
+      // Fetch first names from the user_profile table and filter out the current user's first name
+      const currentUserFirstName = userProfile.get("firstName");
+      const otherUserFirstNames = otherUsers
+        .map((profile) => profile.get("firstName"))
+        .filter((firstName) => firstName !== currentUserFirstName);
+
+      console.log("Other users in the chat:", otherUserFirstNames);
 
       set({
-        currentUser: { userId, fullName, profilePicUrl, chatId },
+        currentUser: {
+          userId,
+          fullName,
+          profilePicUrl,
+          chatId,
+          otherUserFirstNames,
+        },
         isLoading: false,
       });
     } catch (error) {

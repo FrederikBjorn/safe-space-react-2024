@@ -18,7 +18,7 @@ function Middle() {
 
   useEffect(() => {
     endRef.current?.scrollIntoView();
-  }, []);
+  }, [messages]);
 
   return (
     <div className="center">

@@ -10,7 +10,9 @@ function Top() {
       <img src={currentUser.profilePicUrl} alt="" />
       <div className="text">
         <h2 className="text-small-header">{currentUser.fullName}</h2>
-        <p className="small-text">Lone, Jakob & Niels</p>
+        <p className="small-text">
+          {currentUser.otherUserFirstNames.join(", ")}
+        </p>
       </div>
     </div>
   );

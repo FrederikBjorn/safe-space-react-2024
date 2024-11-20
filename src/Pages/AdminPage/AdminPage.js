@@ -25,6 +25,7 @@ export default function AdminPage() {
       alert(user.role + " user added successfully!");
       const userProfile = new Parse.Object("user_profile");
       userProfile.set("user", newUser.toPointer());
+      userProfile.set("firstName", user.fullName.split(" ")[0]);
 
       if (user.profilePic) {
         console.log("Profile pic found:", user.profilePic);
