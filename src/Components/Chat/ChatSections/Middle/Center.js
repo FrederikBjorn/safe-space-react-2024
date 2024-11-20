@@ -9,6 +9,8 @@ function Middle() {
   const { getMessages } = useRetrieveChatMessages();
   const [messages, setMessages] = useState([]);
   const { currentUser } = useUserStore();
+  let chatQuery = new Parse.Query("chat");
+  chatQuery.equalTo("objectId", currentUser.chatId);
 
   useEffect(() => {
     console.log("HOOK: I run the message");
@@ -26,8 +28,6 @@ function Middle() {
 
   async function run() {
     console.log("Run function called");
-    let chatQuery = new Parse.Query("chat");
-    chatQuery.equalTo("objectId", "3AiMWfir5C");
     try {
       let subscription = await chatQuery.subscribe();
 
@@ -54,7 +54,7 @@ function Middle() {
           message.get("sender_user").id === currentUser.userId;
 
         setMessages((messages) => {
-          // Check if the message already exists
+          // Does chat exis?
           const messageExists = messages.some(
             (msg) => msg.createdAt === createdAt && msg.text === text
           );
