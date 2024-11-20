@@ -9,9 +9,11 @@ function Top() {
     <div className="top">
       <img src={currentUser.profilePicUrl} alt="" />
       <div className="text">
-        <h2 className="text-small-header">{currentUser.fullName}</h2>
+        <h2 className="text-small-header">
+          {currentUser.fullName.split(" ")[0]}
+        </h2>
         <p className="small-text">
-          {currentUser.otherUserFirstNames.join(", ")}
+          {"Online with: " + currentUser.otherUserFirstNames.join(", ")}
         </p>
       </div>
     </div>
