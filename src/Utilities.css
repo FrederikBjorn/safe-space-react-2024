@@ -24,6 +24,12 @@
 }
 
 /* Text Classes */
+.small-text {
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: normal;
+}
+
 .message-text {
   font-size: 16px;
   line-height: 1.5;
@@ -54,8 +60,19 @@
   font-weight: normal;
 }
 
+.text-small-header {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-green {
+  color: #257a8b;
 }
 
 @media (max-width: 768px) {
@@ -98,4 +115,8 @@
 
 .bg-white {
   background-color: #ffff;
+}
+
+.bg-grey {
+  background-color: #e1e5f2;
 }

@@ -18,12 +18,12 @@ br {
 }
 
 body {
+  background-color: #e1e5f2;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: normal;
   color: #575757;
   line-height: 1.5;
-  background-color: #e1e5f2;
 }
 
 a {
@@ -84,9 +84,16 @@ select {
   border: 0.5px solid #575757;
 }
 
-*:focus {
+.loading {
+  padding: 50px;
+  font-size: 36px;
+  border-radius: 10%;
+}
+
+input:focus {
   outline: 1px solid #257a8b;
 }
+
 @media (max-width: 768px) {
   body {
     font-size: 14px;
