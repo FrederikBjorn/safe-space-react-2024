@@ -19,6 +19,9 @@ export const useUserStore = create((set) => ({
       const fullName = user.get("fullName");
       console.log("Fetching info on user:", user.get("fullName"));
 
+      // Saving role for later use
+      const role = user.get("role");
+
       // Fetch user data from the user_profile table
       const UserProfile = Parse.Object.extend("user_profile");
       const query = new Parse.Query(UserProfile);
@@ -53,6 +56,7 @@ export const useUserStore = create((set) => ({
       set({
         currentUser: {
           userId,
+          role,
           fullName,
           profilePicUrl,
           chatId,

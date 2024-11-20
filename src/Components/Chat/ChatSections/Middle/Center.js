@@ -22,19 +22,6 @@ function Middle() {
 
   return (
     <div className="center">
-      <div key={"woop"} className="message">
-        <img src="Images/avatar.png" alt="" />
-        <div className="texts">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            aliquid beatae iusto facilis. Neque delectus dignissimos fuga
-            numquam quo, maiores iusto maxime, quia enim vitae culpa, rerum
-            ducimus rem consequatur?
-          </p>
-          <span>1 min ago</span>
-        </div>
-      </div>
-
       {messages?.map((message) => (
         <div
           key={`${message.objectId}-${message.createdAt}`}
