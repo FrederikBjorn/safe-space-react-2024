@@ -34,6 +34,7 @@
   font-size: 16px;
   line-height: 1.5;
   font-weight: normal;
+  word-break: break-all;
 }
 
 .text-xl-header {
