@@ -3,18 +3,18 @@ import Parse from "parse";
 
 function useRetrieveAllChatMessages() {
   const retrieveAllChatMessages = useCallback(
-    async (chatQuery, currentUser) => {
-      const chat = await chatQuery.get(currentUser.chatId);
-      const messages = chat.get("messages") || [];
+    async (messagesQuery, currentUser) => {
+      const messages = await messagesQuery.find();
 
       const messagesWithSenderInfo = await Promise.all(
-        messages.map(async (messagePointer) => {
-          const message = await messagePointer.fetch();
+        messages.map(async (message) => {
           const sendUserId = message.get("sender_user").id;
 
           const userProfileQuery = new Parse.Query("user_profile");
           userProfileQuery.equalTo("objectId", sendUserId);
           const userProfile = await userProfileQuery.first();
+
+          console.log(message.get("text"));
 
           return {
             id: message.id,

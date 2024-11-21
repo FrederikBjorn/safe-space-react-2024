@@ -21,26 +21,34 @@ function Middle() {
 
     const run = async () => {
       console.log("RUN FUNCTION IS CALLED");
-      let chatQuery = new Parse.Query("chat");
-      chatQuery.equalTo("objectId", currentUser.chatId);
+
+      const Chat = Parse.Object.extend("chat");
+      const chatPointer = new Chat();
+      chatPointer.id = currentUser.chatId;
+
+      // Here, I get the messages pointing towards the current chatId and sort it
+      let messagesQuery = new Parse.Query("message");
+      messagesQuery.equalTo("chat", chatPointer);
+      console.log(messagesQuery);
+      messagesQuery.ascending("createdAt");
 
       try {
-        subscription = await chatQuery.subscribe();
+        subscription = await messagesQuery.subscribe();
 
         subscription.on("open", async () => {
           console.log("SUBSCRIPTION OPEN");
           const messagesWithSenderInfo = await retrieveAllChatMessages(
-            chatQuery,
+            messagesQuery,
             currentUser
           );
           setMessages(messagesWithSenderInfo);
           console.log("Messages fetched");
         });
 
-        subscription.on("update", async (chat) => {
+        subscription.on("create", async (message) => {
           console.log("Retrieving the latest message");
           const { id, text, createdAt, profilePic, isOwnMessage } =
-            await retrieveLatestChatMessage(chat, currentUser);
+            await retrieveLatestChatMessage(message, currentUser);
 
           setMessages((prevMessages) => {
             if (prevMessages.some((msg) => msg.id === id)) {

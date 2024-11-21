@@ -7,32 +7,23 @@ const useUpdateChatMessages = () => {
 
   const updateMessages = useCallback(
     async (messageText) => {
-      const Chat = Parse.Object.extend("chat");
-      const Message = Parse.Object.extend("message");
-      const UserProfile = Parse.Object.extend("user_profile");
-      const chatQuery = new Parse.Query(Chat);
-
       try {
-        const chat = await chatQuery.get(currentUser.chatId);
-        console.log("Retrieved chat:", chat);
-
-        const message = new Message();
+        let message = new Parse.Object("message");
         message.set("text", messageText);
 
-        const userProfilePointer = new UserProfile();
-        userProfilePointer.id = currentUser.userId;
-        message.set("sender_user", userProfilePointer);
+        // I am creating a pointer to user_profile
+        const userProfile = new Parse.Object("user_profile");
+        userProfile.id = currentUser.userId;
+        message.set("sender_user", userProfile);
 
-        const savedMessage = await message.save();
+        // I am creating a pointer to specific chat
+        const userChat = new Parse.Object("chat");
+        userChat.id = currentUser.chatId;
+        message.set("chat", userChat);
 
-        const currentMessages = chat.get("messages") || [];
+        const newMessage = await message.save();
 
-        const updatedMessages = currentMessages.concat(savedMessage);
-
-        chat.set("messages", updatedMessages);
-
-        const updatedChat = await chat.save();
-        console.log("Updated chat with new messages:", updatedChat);
+        console.log("New Message Added with text :", newMessage.get("text"));
       } catch (error) {
         console.error("Error:", error);
       }
