@@ -1,84 +1,78 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Center.css";
-import useRetrieveChatMessages from "../../useFunctions/useRetrieveChatMessages";
 import Parse from "parse";
 import { useUserStore } from "../../../UserData/useUserStore";
+import useRetrieveAllChatMessages from "../../useFunctions/useRetrieveAllChatMessages";
+import useRetrieveLatestChatMessage from "../../useFunctions/useRetrieveLatestChatMessage";
 
 function Middle() {
   const endRef = useRef(null);
-  const { getMessages } = useRetrieveChatMessages();
   const [messages, setMessages] = useState([]);
   const { currentUser } = useUserStore();
-  let chatQuery = new Parse.Query("chat");
-  chatQuery.equalTo("objectId", currentUser.chatId);
-
-  useEffect(() => {
-    console.log("HOOK: I run the message");
-    const fetchMessages = async () => {
-      const retrievedMessages = await getMessages();
-      setMessages(retrievedMessages);
-    };
-
-    fetchMessages();
-  }, [getMessages]);
+  const { retrieveAllChatMessages } = useRetrieveAllChatMessages();
+  const { retrieveLatestChatMessage } = useRetrieveLatestChatMessage();
 
   useEffect(() => {
     endRef.current?.scrollIntoView();
   }, [messages]);
 
-  async function run() {
-    console.log("Run function called");
-    try {
-      let subscription = await chatQuery.subscribe();
+  useEffect(() => {
+    let subscription;
 
-      subscription.on("open", () => {
-        console.log("SUBSCRIPTION OPEN");
-      });
+    const run = async () => {
+      console.log("RUN FUNCTION IS CALLED");
 
-      subscription.on("update", async (chat) => {
-        const messages = chat.get("messages");
-        const messagePointer = messages[messages.length - 1];
-        const message = await messagePointer.fetch();
+      const Chat = Parse.Object.extend("chat");
+      const chatPointer = new Chat();
+      chatPointer.id = currentUser.chatId;
 
-        const sendUserId = message.get("sender_user").id;
+      // Here, I get the messages pointing towards the current chatId and sort it
+      let messagesQuery = new Parse.Query("message");
+      messagesQuery.equalTo("chat", chatPointer);
+      console.log(messagesQuery);
+      messagesQuery.ascending("createdAt");
 
-        const userProfileQuery = new Parse.Query("user_profile");
-        userProfileQuery.equalTo("objectId", sendUserId);
+      try {
+        subscription = await messagesQuery.subscribe();
 
-        const userProfile = await userProfileQuery.first();
-
-        const text = message.get("text");
-        const createdAt = message.get("createdAt");
-        const profilePic = userProfile.get("profile_pic").url();
-        const isOwnMessage =
-          message.get("sender_user").id === currentUser.userId;
-
-        setMessages((messages) => {
-          // Does chat exis?
-          const messageExists = messages.some(
-            (msg) => msg.createdAt === createdAt && msg.text === text
+        subscription.on("open", async () => {
+          console.log("SUBSCRIPTION OPEN");
+          const messagesWithSenderInfo = await retrieveAllChatMessages(
+            messagesQuery,
+            currentUser
           );
-
-          if (!messageExists) {
-            console.log("SUB: i run the message");
-            return [...messages, { text, createdAt, profilePic, isOwnMessage }];
-          }
-
-          return messages;
+          setMessages(messagesWithSenderInfo);
+          console.log("Messages fetched");
         });
 
-        console.log("Text: " + text);
-        console.log("Created At: " + createdAt);
-        console.log("Profile Picture: " + profilePic);
-      });
-    } catch (error) {
-      console.log("error");
-    }
-  }
+        subscription.on("create", async (message) => {
+          console.log("Retrieving the latest message");
+          const { id, text, createdAt, profilePic, isOwnMessage } =
+            await retrieveLatestChatMessage(message, currentUser);
 
-  useEffect(() => {
+          setMessages((prevMessages) => {
+            if (prevMessages.some((msg) => msg.id === id)) {
+              console.log("Set Messages is called many times");
+              return prevMessages;
+            }
+            console.log("New message is retrieved");
+            return [
+              ...prevMessages,
+              { id, text, createdAt, profilePic, isOwnMessage },
+            ];
+          });
+        });
+      } catch (error) {
+        console.error("Error during subscription setup:", error);
+      }
+    };
+
     run();
-  }, [currentUser]);
+
+    return () => {
+      subscription?.unsubscribe();
+    };
+  }, [currentUser, retrieveAllChatMessages, retrieveLatestChatMessage]);
 
   return (
     <div className="center">
