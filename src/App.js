@@ -19,7 +19,7 @@ Parse.serverURL = host_url;
 Parse.liveQueryServerURL = liverQueryUrl;
 
 function App() {
-  const { isLoading, fetchUserInfo, setIsLoadingTrue } = useUserStore();
+  const { isLoading, fetchUserInfo } = useUserStore();
 
   useEffect(() => {
     const user = Parse.User.current();
@@ -28,12 +28,11 @@ function App() {
     } else {
       fetchUserInfo(null);
     }
-    
+
     return () => {
       fetchUserInfo(null);
     };
   }, []);
- 
 
   if (isLoading) return <div className="loading">Loading...</div>;
 

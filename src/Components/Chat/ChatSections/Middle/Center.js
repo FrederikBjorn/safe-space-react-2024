@@ -72,7 +72,7 @@ function Middle() {
     return () => {
       subscription?.unsubscribe();
     };
-  }, [currentUser, retrieveAllChatMessages, retrieveLatestChatMessage]);
+  }, []);
 
   return (
     <div className="center">
