@@ -28,7 +28,12 @@ function App() {
     } else {
       fetchUserInfo(null);
     }
-  }, [fetchUserInfo, setIsLoadingTrue]);
+    
+    return () => {
+      fetchUserInfo(null);
+    };
+  }, []);
+ 
 
   if (isLoading) return <div className="loading">Loading...</div>;
 
