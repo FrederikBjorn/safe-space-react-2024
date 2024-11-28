@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./List.css";
 import useRetrieveMedia from "./useFunctions/useRetrieveMedia";
-import { useUserStore } from "../UserData/useUserStore";
 
 function List() {
   const { retrieveMedia } = useRetrieveMedia();
