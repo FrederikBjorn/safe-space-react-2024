@@ -6,6 +6,7 @@ export const useUserStore = create((set) => ({
   isLoading: false,
   setIsLoadingTrue: () => set({ isLoading: true }),
   fetchUserInfo: async (uid) => {
+    set({ isLoading: true });
     if (!uid)
       return (
         set({ currentUser: null, isLoading: false }), console.log("Logged out")

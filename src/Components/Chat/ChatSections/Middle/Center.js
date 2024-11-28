@@ -20,45 +20,36 @@ function Middle() {
     let subscription;
 
     const run = async () => {
-      console.log("RUN FUNCTION IS CALLED");
-
-      const Chat = Parse.Object.extend("chat");
-      const chatPointer = new Chat();
+      const chatPointer = new Parse.Object("chat");
       chatPointer.id = currentUser.chatId;
 
       // Here, I get the messages pointing towards the current chatId and sort it
       let messagesQuery = new Parse.Query("message");
       messagesQuery.equalTo("chat", chatPointer);
-      console.log(messagesQuery);
       messagesQuery.ascending("createdAt");
 
       try {
         subscription = await messagesQuery.subscribe();
 
         subscription.on("open", async () => {
-          console.log("SUBSCRIPTION OPEN");
           const messagesWithSenderInfo = await retrieveAllChatMessages(
             messagesQuery,
             currentUser
           );
           setMessages(messagesWithSenderInfo);
-          console.log("Messages fetched");
         });
 
         subscription.on("create", async (message) => {
-          console.log("Retrieving the latest message");
-          const { id, text, createdAt, profilePic, isOwnMessage } =
+          const { id, text, createdAt, profilePic, isOwnMessage, img, file } =
             await retrieveLatestChatMessage(message, currentUser);
 
           setMessages((prevMessages) => {
             if (prevMessages.some((msg) => msg.id === id)) {
-              console.log("Set Messages is called many times");
               return prevMessages;
             }
-            console.log("New message is retrieved");
             return [
               ...prevMessages,
-              { id, text, createdAt, profilePic, isOwnMessage },
+              { id, text, createdAt, profilePic, isOwnMessage, img, file },
             ];
           });
         });
@@ -83,6 +74,25 @@ function Middle() {
         >
           {!message.isOwnMessage && <img src={message.profilePic} alt="" />}
           <div className="texts">
+            {message.img && (
+              <a href={message.img.url()} target="_blank" download>
+                <img src={message.img.url()} alt="" />
+              </a>
+            )}
+            {message.file && (
+              <div className="file-text">
+                <a
+                  href={message.file.url()}
+                  download={message.file.name().split("_").slice(1).join("_")}
+                  target="_blank"
+                >
+                  <img src="Images/exercisesItem.png" alt="" />
+                  <p className="message-text">
+                    {message.file.name().split("_").slice(1).join("_")}
+                  </p>
+                </a>
+              </div>
+            )}
             <p className="message-text">{message.text}</p>
             <span>{new Date(message.createdAt).toLocaleString()}</span>
           </div>

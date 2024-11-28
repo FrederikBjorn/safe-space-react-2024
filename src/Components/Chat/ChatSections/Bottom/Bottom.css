@@ -13,12 +13,20 @@
     cursor: pointer;
   }
 
-  input {
-    flex: 1;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    outline: none;
+  .left {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+
+    label {
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      display: none;
+    }
   }
 
   .emoji {
@@ -74,6 +82,14 @@
       width: 24px;
       height: 24px;
       cursor: pointer;
+    }
+
+    input {
+      flex: 1;
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
     }
   }
 }

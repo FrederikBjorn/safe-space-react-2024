@@ -14,8 +14,6 @@ export default function useUserLogIn() {
           "username"
         )} has successfully signed in!`
       );
-      const currentUser = await Parse.User.current();
-      console.log(loggedInUser === currentUser);
       userStore.setIsLoadingTrue();
       userStore.fetchUserInfo(loggedInUser.id);
       navigate("/chatpage");

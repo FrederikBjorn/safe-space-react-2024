@@ -18,6 +18,9 @@ function AdminPage() {
     if (Parse.User.current()) {
       Parse.User.logOut();
     }
+    return () => {
+      Parse.User.logOut();
+    };
   }, []);
 
   const addUser = async () => {
@@ -42,10 +45,8 @@ function AdminPage() {
       userProfile.set("chat", chatPointer);
 
       if (user.profilePic) {
-        console.log("Profile pic found:", user.profilePic);
         const parseFile = new Parse.File(user.profilePic.name, user.profilePic);
         await parseFile.save();
-        console.log("Profile pic saved:", parseFile);
         userProfile.set("profile_pic", parseFile);
       } else {
         console.log("No profile pic found.");
