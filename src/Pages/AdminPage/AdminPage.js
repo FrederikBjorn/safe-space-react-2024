@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminPage.css";
 import Parse from "parse";
 import UserForm from "./UserForm";
@@ -11,7 +11,14 @@ function AdminPage() {
     fullName: "",
     role: "",
     profilePic: null,
+    chatId: "",
   });
+
+  useEffect(() => {
+    if (Parse.User.current()) {
+      Parse.User.logOut();
+    }
+  }, []);
 
   const addUser = async () => {
     try {
@@ -24,9 +31,15 @@ function AdminPage() {
 
       await newUser.signUp();
       alert(user.role + " user added successfully!");
+
       const userProfile = new Parse.Object("user_profile");
       userProfile.set("user", newUser.toPointer());
       userProfile.set("firstName", user.fullName.split(" ")[0]);
+
+      const chatPointer = new Parse.Object("chat");
+      chatPointer.id = user.chatId;
+
+      userProfile.set("chat", chatPointer);
 
       if (user.profilePic) {
         console.log("Profile pic found:", user.profilePic);

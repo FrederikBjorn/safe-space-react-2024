@@ -1,28 +1,23 @@
-import Parse from "parse";
-
 function useRetrieveAllChatMessages() {
   const retrieveAllChatMessages = async (messagesQuery, currentUser) => {
+    messagesQuery.include("sender_user");
+    messagesQuery.include("sender_user.profile_pic");
+
     const messages = await messagesQuery.find();
 
-    const messagesWithSenderInfo = await Promise.all(
-      messages.map(async (message) => {
-        const sendUserId = message.get("sender_user").id;
+    const messagesWithSenderInfo = messages.map((message) => {
+      const senderUser = message.get("sender_user");
+      const profilePicUrl = senderUser.get("profile_pic").url();
 
-        const userProfileQuery = new Parse.Query("user_profile");
-        userProfileQuery.equalTo("objectId", sendUserId);
-        const userProfile = await userProfileQuery.first();
+      return {
+        id: message.id,
+        text: message.get("text"),
+        isOwnMessage: senderUser.id === currentUser.userId,
+        createdAt: message.get("createdAt"),
+        profilePic: profilePicUrl,
+      };
+    });
 
-        console.log(message.get("text"));
-
-        return {
-          id: message.id,
-          text: message.get("text"),
-          isOwnMessage: message.get("sender_user").id === currentUser.userId,
-          createdAt: message.get("createdAt"),
-          profilePic: userProfile.get("profile_pic").url(),
-        };
-      })
-    );
     return messagesWithSenderInfo;
   };
   return { retrieveAllChatMessages };

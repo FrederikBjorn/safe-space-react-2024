@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Parse from "parse";
 
 function UserForm({ user, setUser, addUser }) {
+  const [chatRooms, setChatRooms] = useState([]);
+
+  useEffect(() => {
+    async function fetchChats() {
+      try {
+        const chatQuery = new Parse.Query("chat");
+        const chats = await chatQuery.find();
+
+        const chatData = chats.map((chat) => ({
+          id: chat.id,
+          chatNumber: chat.get("chat_number"),
+        }));
+        setChatRooms(chatData);
+      } catch (error) {
+        console.error("Error fetching chat rooms:", error);
+      }
+    }
+    fetchChats();
+    return () => {
+      setChatRooms([]);
+    };
+  }, []);
+
   return (
     <form
       onSubmit={(e) => {
@@ -52,6 +76,23 @@ function UserForm({ user, setUser, addUser }) {
         <option value="patient">Patient</option>
         <option value="professional">Professional</option>
       </select>
+
+      <select
+        name="chatRoom"
+        value={user.chatId}
+        onChange={(e) => setUser({ ...user, chatId: e.target.value })}
+        required
+      >
+        <option value="" disabled>
+          Choose chat room
+        </option>
+        {chatRooms.map((room) => (
+          <option key={room.id} value={room.id}>
+            {room.chatNumber}
+          </option>
+        ))}
+      </select>
+
       <input
         type="file"
         name="profilePic"
