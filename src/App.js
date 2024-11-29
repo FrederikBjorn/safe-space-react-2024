@@ -1,7 +1,7 @@
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import LandingPage from "./Pages/LandingPage/LandingPage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import LogInPage from "./Pages/LogInPage/LogInPage";
 import AdminPage from "./Pages/AdminPage/AdminPage";
 import Parse from "parse";
@@ -20,9 +20,9 @@ Parse.liveQueryServerURL = liverQueryUrl;
 
 function App() {
   const { isLoading, fetchUserInfo, setIsLoadingTrue } = useUserStore();
+  const user = Parse.User.current();
 
   useEffect(() => {
-    const user = Parse.User.current();
     if (user) {
       setIsLoadingTrue();
       fetchUserInfo(user.id);
@@ -37,14 +37,27 @@ function App() {
 
   if (isLoading) return <div className="loading">Loading...</div>;
 
+  if (!user) {
+    return (
+      <>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LogInPage />} />
+          <Route path="/adminPage" element={<AdminPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
         <Route path="/adminPage" element={<AdminPage />} />
-        <Route path="/login" element={<LogInPage />} />
         <Route path="/chatpage" element={<ChatPage />} />
+        <Route path="*" element={<Navigate to="/chatpage" />} />
       </Routes>
     </>
   );

@@ -85,8 +85,12 @@ select {
 }
 
 .loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   padding: 50px;
-  font-size: 36px;
+  font-size: 50px;
   border-radius: 10%;
 }
 
