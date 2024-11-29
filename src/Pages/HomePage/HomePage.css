@@ -1,0 +1,100 @@
+.home-hero {
+  padding: 150px 50px 30px;
+  height: 100vh;
+
+  .hand-one {
+    max-width: 371px;
+    max-height: 191px;
+    position: absolute;
+    top: 200px;
+    left: 100px;
+  }
+
+  .hand-two {
+    max-width: 371px;
+    max-height: 178px;
+    position: absolute;
+    bottom: 70px;
+    right: 100px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    h1 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .navigations {
+      padding: 50px 0px 25px;
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 150px;
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .icon {
+          height: 75px;
+          width: 75px;
+          background-size: cover;
+          transition: 0.2s;
+          cursor: pointer;
+        }
+
+        .chat-icon {
+          background-image: url("../../../public/Images/chat.png");
+        }
+
+        .chat-icon:hover {
+          background-image: url("../../../public/Images/chat-hover.png"); /* Image to show on hover */
+        }
+
+        .diary-icon {
+          background-image: url("../../../public/Images/selftracking2.png");
+        }
+
+        .diary-icon:hover {
+          background-image: url("../../../public/Images/selftracking2-hover.png"); /* Image to show on hover */
+        }
+
+        .calendar-icon {
+          background-image: url("../../../public/Images/calendar2.png");
+        }
+
+        .calendar-icon:hover {
+          background-image: url("../../../public/Images/calendar2-hover.png"); /* Image to show on hover */
+        }
+
+        .exercises-icon {
+          background-image: url("../../../public/Images/exercises2.png");
+        }
+
+        .exercises-icon:hover {
+          background-image: url("../../../public/Images/Exercises2-hover.png"); /* Image to show on hover */
+        }
+
+        p {
+          font-size: 20px;
+          font-style: normal;
+        }
+      }
+    }
+  }
+}

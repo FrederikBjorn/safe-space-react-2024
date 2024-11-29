@@ -8,6 +8,7 @@ import Parse from "parse";
 import ChatPage from "./Pages/ChatPage/ChatPage";
 import { useUserStore } from "./Components/UserData/useUserStore";
 import { useEffect } from "react";
+import HomePage from "./Pages/HomePage/HomePage";
 
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
@@ -23,8 +24,8 @@ function App() {
   const user = Parse.User.current();
 
   useEffect(() => {
+    setIsLoadingTrue();
     if (user) {
-      setIsLoadingTrue();
       fetchUserInfo(user.id);
     } else {
       fetchUserInfo(null);
@@ -44,7 +45,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LogInPage />} />
-          <Route path="/adminPage" element={<AdminPage />} />
+          <Route path="/adminpage" element={<AdminPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </>
@@ -55,9 +56,10 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/adminPage" element={<AdminPage />} />
+        <Route path="/adminpage" element={<AdminPage />} />
+        <Route path="/homepage" element={<HomePage />} />
         <Route path="/chatpage" element={<ChatPage />} />
-        <Route path="*" element={<Navigate to="/chatpage" />} />
+        <Route path="*" element={<Navigate to="/homepage" />} />
       </Routes>
     </>
   );

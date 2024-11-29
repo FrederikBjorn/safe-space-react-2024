@@ -16,7 +16,7 @@ export default function useUserLogIn() {
       );
       userStore.setIsLoadingTrue();
       userStore.fetchUserInfo(loggedInUser.id);
-      navigate("/chatpage");
+      navigate("/homepage");
       return true;
     } catch (error) {
       alert(`Error! ${error.message}`);

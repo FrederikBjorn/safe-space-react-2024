@@ -16,19 +16,19 @@ function NavlinksAfterLogin({ isClicked, closeMenu }) {
     <nav className="navlinks">
       <ul>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="">Home</Link>
+          <Link to="/homepage">Home</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
           <Link to="/chatpage">Chat</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/">Diary</Link>
+          <Link to="/diarypage">Diary</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/">Calendar</Link>
+          <Link to="/calendarpage">Calendar</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/">Exercises</Link>
+          <Link to="/exercisespage">Exercises</Link>
         </li>
         <li onClick={handleLogout}>
           <Link>Log Out</Link>
