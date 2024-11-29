@@ -23,7 +23,7 @@ function List() {
 
   const handleDownload = (url) => {
     try {
-      window.open(url, "_blank"); // Opens the URL in a new tab
+      window.open(url, "_blank");
     } catch (error) {
       console.error("Error opening file in new tab:", error);
     }
