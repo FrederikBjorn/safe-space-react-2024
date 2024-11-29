@@ -1,42 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
-import Parse from "parse";
+import { Link } from "react-router-dom";
+import { useUserLogOut } from "../Authentication/useUserLogOut";
 
 function NavlinksAfterLogin({ isClicked, closeMenu }) {
-  const [currentUser, setCurrentUser] = useState(null);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    userLogOut();
+  const { userLogOut } = useUserLogOut();
+  const handleLogout = async () => {
+    await userLogOut();
     if (isClicked) {
       closeMenu();
-    }
-  };
-
-  // Function that will return current user and also update current username
-  const getCurrentUser = async function () {
-    const currentUser = await Parse.User.current();
-    // Update state variable holding current user
-    setCurrentUser(currentUser);
-    return currentUser;
-  };
-
-  const userLogOut = async function () {
-    try {
-      await Parse.User.logOut();
-      // To verify that current user is now empty, currentAsync can be used
-      const currentUser = await Parse.User.current();
-      if (currentUser === null) {
-        alert("Success! No user is logged in anymore!");
-      }
-      // Update state variable holding current user
-      getCurrentUser();
-      navigate("/");
-      return true;
-    } catch (error) {
-      alert(`Error! ${error.message}`);
-      return false;
     }
   };
 
@@ -47,7 +19,7 @@ function NavlinksAfterLogin({ isClicked, closeMenu }) {
           <Link to="">Home</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
-          <Link to="/">Chat</Link>
+          <Link to="/chatpage">Chat</Link>
         </li>
         <li onClick={() => isClicked && closeMenu()}>
           <Link to="/">Diary</Link>

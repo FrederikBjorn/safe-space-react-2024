@@ -12,18 +12,18 @@ html {
 }
 
 br {
-  display: block; /* makes it have a width */
-  content: ""; /* clears default height */
-  margin-top: 5px; /* change this to whatever height you want it */
+  display: block;
+  content: "";
+  margin-top: 5px;
 }
 
 body {
+  background-color: #e1e5f2;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: normal;
   color: #575757;
   line-height: 1.5;
-  background-color: #e1e5f2;
 }
 
 a {
@@ -48,7 +48,7 @@ button {
 
   color: #fff;
   text-align: center;
-  font-family: "Inter";
+  font-family: "Inter", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 350;
@@ -84,9 +84,20 @@ select {
   border: 0.5px solid #575757;
 }
 
-*:focus {
-  outline: 1px solid #257a8b; /* Add width and style */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 50px;
+  font-size: 50px;
+  border-radius: 10%;
 }
+
+input:focus {
+  outline: 1px solid #257a8b;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 14px;

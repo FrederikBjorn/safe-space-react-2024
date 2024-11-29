@@ -2,12 +2,10 @@ import React from "react";
 import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
 import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
-import { Link, useLocation } from "react-router-dom";
-import Parse from "parse";
+import { useUserStore } from "../UserData/useUserStore.js";
 
 function DesktopNavigation() {
-  const location = useLocation();
-  const currentUser = Parse.User.current();
+  const { currentUser } = useUserStore();
 
   return (
     <div className="navbar" id="navbar-desktop">
