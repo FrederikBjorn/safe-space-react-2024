@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AdminPage.css";
 import Parse from "parse";
 import UserForm from "./UserForm";
+import { useUserLogOut } from "../../Components/Authentication/useUserLogOut";
+import { useCreateChat } from "./useCreateChat";
+import { useNavigate } from "react-router-dom";
 
 function AdminPage() {
+  const { userLogOut } = useUserLogOut();
+  const { createChat } = useCreateChat();
+  const navigate = useNavigate();
+  const adminId = process.env.REACT_APP_PARSE_ADMIN_ID;
+
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -14,17 +22,18 @@ function AdminPage() {
     chatId: "",
   });
 
-  useEffect(() => {
-    if (Parse.User.current()) {
-      Parse.User.logOut();
-    }
-    return () => {
-      Parse.User.logOut();
-    };
-  }, []);
+  if (Parse.User.current().id !== adminId) {
+    alert("YOU ARE NOT THANOS");
+    navigate("/");
+    userLogOut();
+  }
 
   const addUser = async () => {
     try {
+      const currentUser = Parse.User.current();
+      const currentSessionToken = currentUser.getSessionToken();
+
+      // Setting up new user!!
       const newUser = new Parse.User();
       newUser.set("username", user.userName);
       newUser.set("password", user.password);
@@ -35,14 +44,24 @@ function AdminPage() {
       await newUser.signUp();
       alert(user.role + " user added successfully!");
 
+      // Ensuring that the current user is still Thanos and not new user!!
+      await Parse.User.become(currentSessionToken);
+
+      // Adding new user to chat ACL!
+      const chatQuery = new Parse.Query("chat");
+      const chat = await chatQuery.get(user.chatId);
+      const chatAcl = (await chat.getACL()) || new Parse.ACL();
+
+      chatAcl.setReadAccess(newUser, true);
+      chatAcl.setWriteAccess(newUser, true);
+      chat.setACL(chatAcl);
+
+      // Creating user profile with first name and profile picture!
       const userProfile = new Parse.Object("user_profile");
       userProfile.set("user", newUser.toPointer());
       userProfile.set("firstName", user.fullName.split(" ")[0]);
 
-      const chatPointer = new Parse.Object("chat");
-      chatPointer.id = user.chatId;
-
-      userProfile.set("chat", chatPointer);
+      userProfile.set("chat", chat);
 
       if (user.profilePic) {
         const parseFile = new Parse.File(user.profilePic.name, user.profilePic);
@@ -62,6 +81,9 @@ function AdminPage() {
 
   return (
     <div className="admin-page">
+      <button onClick={() => userLogOut()}>Log Out</button>
+      <button onClick={() => createChat()}>Create Chat</button>
+
       <h1>Admin Panel</h1>
 
       {/* Form for adding Patient User */}

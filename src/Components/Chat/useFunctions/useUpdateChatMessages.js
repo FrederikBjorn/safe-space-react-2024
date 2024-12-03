@@ -26,10 +26,14 @@ const useUpdateChatMessages = () => {
       userProfile.id = currentUser.userId;
       message.set("sender_user", userProfile);
 
-      // I am creating a pointer to specific chat
-      const userChat = new Parse.Object("chat");
-      userChat.id = currentUser.chatId;
-      message.set("chat", userChat);
+      // Retrieve the chat object to get a pointer and its ACL
+      const chatQuery = new Parse.Query("chat");
+      const chat = await chatQuery.get(currentUser.chatId);
+      message.set("chat", chat);
+      const chatAcl = chat.getACL();
+
+      // Setting the same ACL for the message
+      message.setACL(chatAcl);
 
       await message.save();
     } catch (error) {
