@@ -12,6 +12,12 @@ function Middle() {
   const { retrieveAllChatMessages } = useRetrieveAllChatMessages();
   const { retrieveLatestChatMessage } = useRetrieveLatestChatMessage();
 
+  //play sound
+  const playSound = () => {
+    const recivedMessageAudio = new Audio ("/Audio/you_got_mail.mp3");
+    recivedMessageAudio.play().catch((error) => console.error("error playing audio", error));
+  };
+
   useEffect(() => {
     endRef.current?.scrollIntoView();
   }, [messages]);
@@ -42,6 +48,12 @@ function Middle() {
         subscription.on("create", async (message) => {
           const { id, text, createdAt, profilePic, isOwnMessage, img, file } =
             await retrieveLatestChatMessage(message, currentUser);
+
+            //insert sound object
+          if (!isOwnMessage){
+            playSound();
+            console.log("playing sound")
+          }
 
           setMessages((prevMessages) => {
             if (prevMessages.some((msg) => msg.id === id)) {
