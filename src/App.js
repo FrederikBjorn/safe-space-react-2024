@@ -22,6 +22,7 @@ Parse.liveQueryServerURL = liverQueryUrl;
 function App() {
   const { isLoading, fetchUserInfo, setIsLoadingTrue } = useUserStore();
   const user = Parse.User.current();
+  const adminId = process.env.REACT_APP_PARSE_ADMIN_ID;
 
   useEffect(() => {
     setIsLoadingTrue();
@@ -38,6 +39,17 @@ function App() {
 
   if (isLoading) return <div className="loading">Loading...</div>;
 
+  if (user && user.id === adminId) {
+    return (
+      <>
+        <Routes>
+          <Route path="/adminpage" element={<AdminPage />} />
+          <Route path="*" element={<Navigate to="/adminpage" />} />
+        </Routes>
+      </>
+    );
+  }
+
   if (!user) {
     return (
       <>
@@ -45,7 +57,6 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LogInPage />} />
-          <Route path="/adminpage" element={<AdminPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </>
@@ -56,9 +67,9 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/adminpage" element={<AdminPage />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/chatpage" element={<ChatPage />} />
+        <Route path="/adminpage" element={<AdminPage />} />
         <Route path="*" element={<Navigate to="/homepage" />} />
       </Routes>
     </>

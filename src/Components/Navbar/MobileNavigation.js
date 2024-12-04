@@ -5,10 +5,12 @@ import NavlinksAfterLogin from "./NavlinksAfterLogin.js";
 import NavlinksBeforeLogin from "./NavlinksBeforeLogin.js";
 import "./Navbar.css";
 import { useUserStore } from "../UserData/useUserStore.js";
+import { useNavigate } from "react-router-dom";
 
 function MobileNavigation() {
   const [click, setClick] = useState(false);
   const { currentUser } = useUserStore();
+  const navigate = useNavigate();
 
   const Hamburger = (
     <RxHamburgerMenu
@@ -38,7 +40,13 @@ function MobileNavigation() {
     <div className="navbar" id="navbar-mobile">
       <nav className="MobileNavigation">
         <div className="logo">
-          <img src="Images/icon.png" alt="logo" width="90" height="81" />
+          <img
+            src="Images/icon.png"
+            alt="logo"
+            width="90"
+            height="81"
+            onClick={() => navigate("/")}
+          />
         </div>
         {click ? Close : Hamburger}
 

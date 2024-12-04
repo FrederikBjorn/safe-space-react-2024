@@ -1,6 +1,8 @@
 .home-hero {
-  padding: 150px 50px 30px;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .hand-one {
     max-width: 371px;
@@ -14,8 +16,8 @@
     max-width: 371px;
     max-height: 178px;
     position: absolute;
-    bottom: 70px;
-    right: 100px;
+    bottom: 100px;
+    right: 50px;
   }
 
   .container {
