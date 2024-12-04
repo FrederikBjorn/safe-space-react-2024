@@ -16,7 +16,7 @@
 
       .texts {
         p {
-          background-color: #257a8b;
+          background-color: var(--primary-turquoise);
           color: white;
         }
       }
@@ -44,7 +44,7 @@
 
           p {
             padding: 20px 5px;
-            color: #575757;
+            color: var(--primary-grey);
             background-color: transparent;
           }
         }

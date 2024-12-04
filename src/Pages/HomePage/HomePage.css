@@ -100,3 +100,49 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .hand-one {
+    display: none;
+  }
+
+  .hand-two {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding-top: 50px;
+    .container {
+      gap: 10px;
+      h1 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+      .navigations {
+        gap: 100px;
+        padding: 20px;
+
+        .item {
+          gap: 20px;
+
+          .icon {
+            height: 50px;
+            width: 50px;
+            background-size: cover;
+            transition: 0.2s;
+            cursor: pointer;
+          }
+
+          p {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -56,7 +56,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LogInPage />} />
+          <Route path="/loginpage" element={<LogInPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </>
