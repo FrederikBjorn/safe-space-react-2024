@@ -14,8 +14,10 @@ function Middle() {
 
   //play sound
   const playSound = () => {
-    const recivedMessageAudio = new Audio ("/Audio/you_got_mail.mp3");
-    recivedMessageAudio.play().catch((error) => console.error("error playing audio", error));
+    const recivedMessageAudio = new Audio("/Audio/msg_tone_1.wav");
+    recivedMessageAudio
+      .play()
+      .catch((error) => console.error("error playing audio", error));
   };
 
   useEffect(() => {
@@ -49,10 +51,10 @@ function Middle() {
           const { id, text, createdAt, profilePic, isOwnMessage, img, file } =
             await retrieveLatestChatMessage(message, currentUser);
 
-            //insert sound object
-          if (!isOwnMessage){
+          //insert sound object
+          if (!isOwnMessage) {
             playSound();
-            console.log("playing sound")
+            console.log("playing sound");
           }
 
           setMessages((prevMessages) => {
