@@ -19,6 +19,12 @@
   padding: 5px 80px 35px;
 }
 
+.logo {
+  img {
+    cursor: pointer;
+  }
+}
+
 nav {
   display: flex;
   align-items: center;
