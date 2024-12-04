@@ -69,6 +69,7 @@ function App() {
       <Routes>
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/chatpage" element={<ChatPage />} />
+        <Route path="/adminpage" element={<AdminPage />} />
         <Route path="*" element={<Navigate to="/homepage" />} />
       </Routes>
     </>
