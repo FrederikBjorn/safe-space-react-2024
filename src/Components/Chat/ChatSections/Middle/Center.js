@@ -14,7 +14,7 @@ function Middle() {
 
   //play sound
   const playSound = () => {
-    const recivedMessageAudio = new Audio ("/Audio/you_got_mail.mp3");
+    const recivedMessageAudio = new Audio ("/Audio/msg_tone_1.wav");
     recivedMessageAudio.play().catch((error) => console.error("error playing audio", error));
   };
 
