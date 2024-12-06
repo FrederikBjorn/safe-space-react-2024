@@ -87,6 +87,11 @@ function Bottom() {
           value={text}
           placeholder="Type your message"
           onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSend();
+            }
+          }}
         />
         <div className="emoji">
           <img

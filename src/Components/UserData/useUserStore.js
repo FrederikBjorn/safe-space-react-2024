@@ -7,10 +7,7 @@ export const useUserStore = create((set) => ({
   setIsLoadingTrue: () => set({ isLoading: true }),
   fetchUserInfo: async (uid) => {
     set({ isLoading: true });
-    if (!uid)
-      return (
-        set({ currentUser: null, isLoading: false }), console.log("Logged out")
-      );
+    if (!uid) return set({ currentUser: null, isLoading: false });
 
     try {
       // Retrieve Current User
@@ -61,7 +58,6 @@ export const useUserStore = create((set) => ({
         isLoading: false,
       });
     } catch (error) {
-      console.log("Error!: can't fetch user info");
       set({ currentUser: null, isLoading: false });
     }
   },

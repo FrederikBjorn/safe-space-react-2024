@@ -1,5 +1,5 @@
 .bottom {
-  border-top: 0.5px solid #57575764;
+  border-top: 0.5px solid var(--primary-grey-OP64);
   padding: 20px;
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
     align-items: center;
 
     padding: 0px 8px;
-    border: 0.5px solid #57575764;
+    border: 0.5px solid var(--primary-grey-OP64);
     outline: none;
     border-radius: 20px;
     height: 35px;

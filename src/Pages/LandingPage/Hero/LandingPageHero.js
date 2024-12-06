@@ -1,5 +1,5 @@
 import { React } from "react";
-import "./LandingPageHero.css"
+import "./LandingPageHero.css";
 import { useNavigate } from "react-router-dom";
 import Wave from "../../../Components/lib/Wave";
 
@@ -23,7 +23,7 @@ function LandingPageHero() {
                   <button
                     className="login"
                     type="button"
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate("/loginpage")}
                   >
                     Log in
                   </button>

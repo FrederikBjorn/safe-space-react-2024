@@ -56,7 +56,7 @@ function List() {
             <img
               src="Images/downloade.png"
               alt=""
-              onClick={() => handleDownload(file.url)}
+              onClick={() => handleDownload(file.url())}
             />
           </li>
         ))}

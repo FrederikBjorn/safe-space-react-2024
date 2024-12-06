@@ -1,3 +1,39 @@
 .admin-page {
-  padding-top: 300px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .log-out {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .create-chat {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .signup-square {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 50px;
+    border-radius: 10px;
+    filter: drop-shadow(0px 0px 5px var(--primary-grey));
+  }
+}
+
+.forms {
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
 }

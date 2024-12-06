@@ -73,7 +73,7 @@
 }
 
 .text-green {
-  color: #257a8b;
+  color: var(--primary-turquoise);
 }
 
 @media (max-width: 768px) {
@@ -115,9 +115,9 @@
 }
 
 .bg-white {
-  background-color: #ffff;
+  background-color: var(--primary-white);
 }
 
 .bg-grey {
-  background-color: #e1e5f2;
+  background-color: var(--primary-broken-white);
 }
