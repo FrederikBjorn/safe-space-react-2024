@@ -10,7 +10,7 @@ function Top() {
       <img src={currentUser.profilePicUrl} alt="" />
       <div className="text">
         <h2 className="text-small-header">
-          {currentUser.fullName.split(" ")[0]}
+          Session of {currentUser.fullName.split(" ")[0]}
         </h2>
         <p className="small-text">
           {"Online with: " + currentUser.otherUserFirstNames.join(", ")}
