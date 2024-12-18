@@ -50,7 +50,6 @@ function App() {
           <Route path="/adminPage" element={<AdminPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-        <ToastContainer />
       </>
     );
   }
@@ -63,7 +62,6 @@ function App() {
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/chatpage" />} />
       </Routes>
-      <ToastContainer />
     </>
   );
 }
