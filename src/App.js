@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
 
 
+
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
 const javascript_key = process.env.REACT_APP_PARSE_JAVASCRIPT_KEY;
@@ -50,6 +51,7 @@ function App() {
           <Route path="/adminPage" element={<AdminPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        <ToastContainer />
       </>
     );
   }
@@ -62,6 +64,7 @@ function App() {
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="*" element={<Navigate to="/chatpage" />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 }

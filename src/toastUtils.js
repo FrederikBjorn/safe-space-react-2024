@@ -3,6 +3,7 @@ import "./Utilities.css";
 import { Color } from "antd/es/color-picker";
 
 export const simpleErrorToast = (message, type = "error") => {
+    console.log("simple error toast")
   toast(message, {
     type, // Accepts "success", "error", "info", "warning", etc.
     position: "top-right",
@@ -11,6 +12,7 @@ export const simpleErrorToast = (message, type = "error") => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
+    theme: "light",
     closeButton: ({ closeToast }) => (
       <button className="custom-toast-close" onClick={closeToast}>
         X
