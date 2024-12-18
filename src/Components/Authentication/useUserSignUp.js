@@ -1,4 +1,6 @@
 import Parse from "parse";
+import { simpleSuccessToast, simpleErrorToast } from "../../toastUtils";
+
 
 function useUserSignUp() {
   const userSignUp = async (user) => {
@@ -15,7 +17,8 @@ function useUserSignUp() {
       newUser.set("role", user.role);
 
       await newUser.signUp();
-      alert(user.role + " user added successfully!");
+      simpleSuccessToast(user.role + " user added successfully!");
+
 
       // Ensuring that the current user is still Thanos and not new user!!
       await Parse.User.become(currentSessionToken);
@@ -47,8 +50,7 @@ function useUserSignUp() {
       await userProfile.save();
       console.log("User profile saved successfully.");
     } catch (error) {
-      alert(`Error: ${error.message}`);
-      console.error("Error details:", error);
+      simpleErrorToast(`Error: ${error.message}`)
     }
   };
   return { userSignUp };

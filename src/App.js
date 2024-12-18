@@ -8,7 +8,9 @@ import Parse from "parse";
 import ChatPage from "./Pages/ChatPage/ChatPage";
 import { useUserStore } from "./Components/UserData/useUserStore";
 import { useEffect } from "react";
-import HomePage from "./Pages/HomePage/HomePage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
+
 
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
@@ -22,11 +24,10 @@ Parse.liveQueryServerURL = liverQueryUrl;
 function App() {
   const { isLoading, fetchUserInfo, setIsLoadingTrue } = useUserStore();
   const user = Parse.User.current();
-  const adminId = process.env.REACT_APP_PARSE_ADMIN_ID;
 
   useEffect(() => {
-    setIsLoadingTrue();
     if (user) {
+      setIsLoadingTrue();
       fetchUserInfo(user.id);
     } else {
       fetchUserInfo(null);
@@ -39,26 +40,17 @@ function App() {
 
   if (isLoading) return <div className="loading">Loading...</div>;
 
-  if (user && user.id === adminId) {
-    return (
-      <>
-        <Routes>
-          <Route path="/adminpage" element={<AdminPage />} />
-          <Route path="*" element={<Navigate to="/adminpage" />} />
-        </Routes>
-      </>
-    );
-  }
-
   if (!user) {
     return (
       <>
         <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/loginpage" element={<LogInPage />} />
+          <Route path="/login" element={<LogInPage />} />
+          <Route path="/adminPage" element={<AdminPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        <ToastContainer />
       </>
     );
   }
@@ -67,11 +59,11 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/homepage" element={<HomePage />} />
+        <Route path="/adminPage" element={<AdminPage />} />
         <Route path="/chatpage" element={<ChatPage />} />
-        <Route path="/adminpage" element={<AdminPage />} />
-        <Route path="*" element={<Navigate to="/homepage" />} />
+        <Route path="*" element={<Navigate to="/chatpage" />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 }

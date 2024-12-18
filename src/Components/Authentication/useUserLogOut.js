@@ -1,6 +1,8 @@
 import Parse from "parse";
 import { useUserStore } from "../UserData/useUserStore";
 import { useNavigate } from "react-router-dom";
+import { simpleErrorToast } from "../../toastUtils";
+
 
 export const useUserLogOut = () => {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ export const useUserLogOut = () => {
       userStore.fetchUserInfo(user);
       return true;
     } catch (error) {
-      alert(`Error! ${error.message}`);
+      simpleErrorToast(`Error: ${error.message}`);
       return false;
     }
   };

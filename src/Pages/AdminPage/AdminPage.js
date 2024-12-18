@@ -6,6 +6,7 @@ import { useUserLogOut } from "../../Components/Authentication/useUserLogOut";
 import { useCreateChat } from "./Helpers/useCreateChat";
 import { useNavigate } from "react-router-dom";
 import useUserSignUp from "../../Components/Authentication/useUserSignUp";
+import { simpleErrorToast } from "../../toastUtils";
 
 function AdminPage() {
   const { userLogOut } = useUserLogOut();
@@ -15,7 +16,7 @@ function AdminPage() {
   const adminId = process.env.REACT_APP_PARSE_ADMIN_ID;
 
   if (Parse.User.current().id !== adminId) {
-    alert("YOU ARE NOT THANOS");
+    simpleErrorToast("No privilege, YOU ARE NOT THANOS")
     navigate("/");
     userLogOut();
   }
@@ -41,6 +42,7 @@ function AdminPage() {
       </div>
       <div className="create-chat">
         <button onClick={() => createChat()}>Create Chat</button>
+
       </div>
 
       {/* Form for adding Patient User */}

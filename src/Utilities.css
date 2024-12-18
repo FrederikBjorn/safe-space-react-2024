@@ -121,3 +121,18 @@
 .bg-grey {
   background-color: var(--primary-broken-white);
 }
+
+/* Toasts */
+.custom-toast-close {
+  color: var(--primary-black); 
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.Toastify__toast--dark {
+  background-color: var(--primary-grey-OP64);
+  color: var(--primary-turquoise);
+}

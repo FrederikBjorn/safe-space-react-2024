@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Parse from "parse";
 import { useUserStore } from "../UserData/useUserStore";
+import { simpleErrorToast } from "../../toastUtils";
+
+
 
 export default function useUserLogIn() {
   const navigate = useNavigate();
@@ -19,7 +22,7 @@ export default function useUserLogIn() {
       navigate("/homepage");
       return true;
     } catch (error) {
-      alert(`Error! ${error.message}`);
+      simpleErrorToast(`Error: ${error.message}`);
       return false;
     }
   };
