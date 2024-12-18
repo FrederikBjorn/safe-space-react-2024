@@ -23,7 +23,7 @@ function LandingPageHero() {
                   <button
                     className="login"
                     type="button"
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate("/loginpage")}
                   >
                     Log in
                   </button>
