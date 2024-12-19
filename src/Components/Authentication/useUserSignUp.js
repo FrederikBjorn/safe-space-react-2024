@@ -45,13 +45,12 @@ function useUserSignUp() {
         userProfile.set("profile_pic", parseFile);
       } else {
         console.log("No profile pic found.");
-        simpleErrorToast("No profile pic found.")
       }
 
       await userProfile.save();
-      console.log("User profile saved successfully.");
+
     } catch (error) {
-      simpleSuccessToast(`Error: ${error.message}`)
+      simpleErrorToast(`Error: ${error.message}`)
     }
   };
   return { userSignUp };
