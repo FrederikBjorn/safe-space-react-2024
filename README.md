@@ -7,7 +7,7 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Already registered user
-To try out the functinoallity of the application you can login with the user:
+To try out the functionality of the application you can login with the user:
 
 #### Username: jonpe
 #### Password: jonpe
