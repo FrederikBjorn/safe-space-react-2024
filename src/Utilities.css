@@ -1,3 +1,5 @@
+/* FIND DEAFULT COLOUR SCHEME IN THE APP.CSS E.G. --PRIMARY-XYZ */
+
 /* Containers */
 .container-lg {
   max-width: 1300px;
@@ -123,6 +125,7 @@
 }
 
 /* Toasts */
+/* documentation --> https://fkhadra.github.io/react-toastify/how-to-style/*/
 .custom-toast-close {
   color: var(--primary-black); 
   font-weight: bold;
@@ -130,9 +133,4 @@
   border: none;
   background: transparent;
   cursor: pointer;
-}
-
-.Toastify__toast--dark {
-  background-color: var(--primary-grey-OP64);
-  color: var(--primary-turquoise);
 }

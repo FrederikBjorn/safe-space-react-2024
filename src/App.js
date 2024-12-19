@@ -1,4 +1,5 @@
 import "./App.css";
+import "./Utilities.css";
 import Navbar from "./Components/Navbar/Navbar";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -10,6 +11,7 @@ import { useUserStore } from "./Components/UserData/useUserStore";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
+
 
 
 

@@ -23,7 +23,6 @@ export default function useUserLogIn() {
       return true;
     } catch (error) {
       simpleErrorToast(`Error: ${error.message}`);
-      alert(" !!")
       return false;
     }
   };
