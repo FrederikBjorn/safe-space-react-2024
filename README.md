@@ -1,5 +1,5 @@
 # Running Safe Space Application
-In the project directory, you can run:
+In the project directory on the main branch, you can run:
 
 ### `npm start`
 
