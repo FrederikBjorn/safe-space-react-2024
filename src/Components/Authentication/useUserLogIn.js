@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Parse from "parse";
 import { useUserStore } from "../UserData/useUserStore";
 
+// Custom hook that handles the login logic and interacts with the backend
 export default function useUserLogIn() {
   const navigate = useNavigate();
   const userStore = useUserStore();
