@@ -18,4 +18,4 @@ To register a new user, it is needed to login as admin user:
 #### Username: Thanos
 #### Password: Thanos1234
 
-Thanos, as the only user, has the power to create new userprofiles(both patient and professional), create new chatrooms and asign users to chatrooms
+Thanos, as the only user, has the power to create new userprofiles(both patient and professional), create new chatrooms and asign users to chatrooms.
