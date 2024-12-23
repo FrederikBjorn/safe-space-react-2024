@@ -1,0 +1,113 @@
+.diary{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+}
+.diary-container{
+    padding: 50px;
+    width: 90vw;
+    height: 90vh;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    img {
+        width: 25px;
+        height: 25px;
+      }
+}
+
+.diary-entry-container{
+    flex: 2;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .diary-header{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 18px;
+        border-radius: 30px 30px 0px 0px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        padding: 16.5px 21px;
+        border-bottom: 0.5px solid var(--primary-grey-OP64);
+    }
+
+    .diary-body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex:1;
+    
+        textarea {
+            height: 90%;
+            width: 90%;
+            border-radius: 30px;
+            border-color: var(--primary-turquoise);
+            padding: 15px;
+            
+
+        }
+    }
+
+    .entry-buttons{
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        padding: 16.5px 21px;
+    }
+}
+
+.diary-history-container{
+    flex: 1;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .history-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        gap: 18px;
+        padding: 16.5px 21px;
+        border-radius: 30px 30px 0px 0px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        border-bottom: 0.5px solid var(--primary-grey-OP64);
+    }
+
+    .items{
+        flex:1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 30px; /* Applies border-radius */
+        }
+    }
+
+    .download-history{
+        display: flex;
+        justify-content: center;
+        padding: 16.5px 21px;
+        border-top: 0.5px solid var(--primary-grey-OP64);
+    }
+
+
+    
+}

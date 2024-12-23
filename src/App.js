@@ -9,6 +9,7 @@ import ChatPage from "./Pages/ChatPage/ChatPage";
 import { useUserStore } from "./Components/UserData/useUserStore";
 import { useEffect } from "react";
 import HomePage from "./Pages/HomePage/HomePage";
+import DiaryPage from "./Pages/DiaryPage/DiaryPage";
 
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
@@ -70,6 +71,7 @@ function App() {
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/adminpage" element={<AdminPage />} />
+        <Route path= "/diarypage" element={<DiaryPage />} />
         <Route path="*" element={<Navigate to="/homepage" />} />
       </Routes>
     </>
