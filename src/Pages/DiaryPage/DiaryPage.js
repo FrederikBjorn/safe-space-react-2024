@@ -1,28 +1,55 @@
 import "./DiaryPage.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import { v4 as uuidv4 } from 'uuid';
+import Parse from "parse";
 
 
 function DiaryPage() {
     const [text, setText] = useState("");
     const [history, setHistory] = useState([]);
 
-    const handleAddEntry = function(){
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const userId = Parse.User.current().id;
+            const userQuerry = new Parse.Query("_User");
+            userQuerry.equalTo("objectId", userId);
+
+            const user = await userQuerry.first();
+            const diaryEntries = user.get("diaryHistory") || [];
+
+            console.log("UserDiaries: " + diaryEntries);
+            setHistory(diaryEntries);
+        };
+    
+        fetchUserData();
+    },[]);
+
+    const handleAddEntry = async function(){
         if(text === "") return;
 
-        // Converts text to a PDF: 
-        const pdf = new jsPDF();
-        const filename = new Date().toISOString().slice(0, 10) + ".pdf";
+        const textFile = new Blob([text], { type: 'text/plain' });
+        const filename = new Date().toISOString().slice(0, 10) + ".txt";
+        const url = URL.createObjectURL(textFile);
 
-        pdf.text(text, 10, 10);
-        pdf.save(filename);
-        setHistory([...history, {name: filename, file: pdf}]);
+        //updates diarylist and empties text: 
+        setHistory([...history, {id: uuidv4(), name: filename, file: textFile, url: url}]);
         setText("");
         console.log(history);
+
+        //Saves new list of diaries in database:
+        try { 
+            const user = Parse.User.current();
+            user.set("diaryHistory", history);
+
+            await user.save();
+            console.log("Diary entry saved to the database.");
+        } catch (error){
+            console.log("Failed to save Diary Entry: " + error)
+        }
     }
 
-    const handleDismiss = function(){
+    const handleDismiss = function () {
         setText("");
     }
 
@@ -34,9 +61,22 @@ function DiaryPage() {
         }
       };
 
-    const formatName = (name) => {
-        return name.split("_").slice(1).join("_");
-      };
+    const handleDelete = async function (fileId) {
+        setHistory(history.filter((oldfile)=> oldfile.id !== fileId))
+
+        //Saves new list of diaries in database:
+        try { 
+            const user = Parse.User.current();
+            user.set("diaryHistory", history);
+
+            await user.save();
+            console.log("Diary entry saved to the database.");
+        } catch (error){
+            console.log("Failed to save Diary Entry: " + error)
+        }
+
+    };
+
 
     return(
         <div className="diary">
@@ -45,7 +85,7 @@ function DiaryPage() {
                     <div className="diary-header"> 
                         <img src="Images/file.png" alt=""/>
                         <h2 className="text-small-header">New Diary Entry</h2>
-                        <img src="Images/downloade.png" alt=""/>
+                        <div></div>
                     </div>
 
                     <div className="diary-body">
@@ -64,18 +104,23 @@ function DiaryPage() {
             
                     <ul className="items">
                         {history.map((file)=>(
-                            <li key={uuidv4()} className="entry">
-                              <img src="Images/file.png" alt=""/>
-                              <span
-                                className="message-text"
-                                onClick={() => handleDownload(file.url())}
-                              >
-                                {file.name}
-                              </span>
+                            <li key={file.id} className="entry">
+                            <img src="Images/deleteIcon.png" alt="" onClick = {()=>handleDelete(file.id)}/>
+                            
+                            <div>
+                                <img src="Images/file.png" alt=""/>
+                                <span
+                                    className="message-text"
+                                    onClick={() => handleDownload(file.url)}
+                                >
+                                    {file.name}
+                                </span>
+                            </div>
+
                             <img
                               src="Images/downloade.png"
                               alt=""
-                              onClick={() => handleDownload(file.url())}
+                              onClick={() => handleDownload(file.url)}
                             />
                           </li>
                         ))}
