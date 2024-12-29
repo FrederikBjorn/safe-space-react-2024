@@ -1,6 +1,5 @@
 import "./DiaryPage.css"
 import { useEffect, useState } from "react";
-import jsPDF from "jspdf";
 import { v4 as uuidv4 } from 'uuid';
 import Parse from "parse";
 
@@ -70,9 +69,9 @@ function DiaryPage() {
             user.set("diaryHistory", history);
 
             await user.save();
-            console.log("Diary entry saved to the database.");
+            console.log("Diary entry deleted.");
         } catch (error){
-            console.log("Failed to save Diary Entry: " + error)
+            console.log("Failed to delete Diary Entry: " + error)
         }
 
     };
