@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import Parse from "parse";
 
+// Custom hook that handles global user-related state (loading status, user info)
 export const useUserStore = create((set) => ({
   currentUser: null,
   isLoading: false,
