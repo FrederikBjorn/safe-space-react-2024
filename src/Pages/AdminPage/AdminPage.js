@@ -6,6 +6,7 @@ import { useUserLogOut } from "../../Components/Authentication/useUserLogOut";
 import { useCreateChat } from "./Helpers/useCreateChat";
 import { useNavigate } from "react-router-dom";
 import useUserSignUp from "../../Components/Authentication/useUserSignUp";
+import { simpleErrorToast } from "../../Components/Utils/toastUtils";
 
 function AdminPage() {
   const { userLogOut } = useUserLogOut();
@@ -15,7 +16,7 @@ function AdminPage() {
   const adminId = process.env.REACT_APP_PARSE_ADMIN_ID;
 
   if (Parse.User.current().id !== adminId) {
-    alert("YOU ARE NOT THANOS");
+    simpleErrorToast(`You do not have privileges for this action!`);
     navigate("/");
     userLogOut();
   }
