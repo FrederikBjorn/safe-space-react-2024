@@ -1,6 +1,7 @@
 import Parse from "parse";
 import { useUserStore } from "../UserData/useUserStore";
 import { useNavigate } from "react-router-dom";
+import { simpleErrorToast } from "../Utils/toastUtils";
 
 export const useUserLogOut = () => {
   const navigate = useNavigate();
@@ -12,13 +13,10 @@ export const useUserLogOut = () => {
       navigate("/");
       await Parse.User.logOut();
       const user = Parse.User.current();
-      if (user === null) {
-        console.log("Success! No user is logged in anymore!");
-      }
       userStore.fetchUserInfo(user);
       return true;
     } catch (error) {
-      alert(`Error! ${error.message}`);
+      simpleErrorToast(`Logout unsucsessful - ${error.message}`);
       return false;
     }
   };

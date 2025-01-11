@@ -9,6 +9,9 @@ import ChatPage from "./Pages/ChatPage/ChatPage";
 import { useUserStore } from "./Components/UserData/useUserStore";
 import { useEffect } from "react";
 import HomePage from "./Pages/HomePage/HomePage";
+//import DiaryPage from "./Pages/DiaryPage/DiaryPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
@@ -46,6 +49,7 @@ function App() {
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="*" element={<Navigate to="/adminpage" />} />
         </Routes>
+        <ToastContainer />
       </>
     );
   }
@@ -59,6 +63,7 @@ function App() {
           <Route path="/loginpage" element={<LogInPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        <ToastContainer />
       </>
     );
   }
@@ -72,6 +77,7 @@ function App() {
         <Route path="/adminpage" element={<AdminPage />} />
         <Route path="*" element={<Navigate to="/homepage" />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 }
