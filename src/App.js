@@ -13,7 +13,6 @@ import DiaryPage from "./Pages/DiaryPage/DiaryPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
 const javascript_key = process.env.REACT_APP_PARSE_JAVASCRIPT_KEY;
@@ -76,7 +75,6 @@ function App() {
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/chatpage" element={<ChatPage />} />
         <Route path="/adminpage" element={<AdminPage />} />
-        <Route path= "/diarypage" element={<DiaryPage />} />
         <Route path="*" element={<Navigate to="/homepage" />} />
       </Routes>
       <ToastContainer />

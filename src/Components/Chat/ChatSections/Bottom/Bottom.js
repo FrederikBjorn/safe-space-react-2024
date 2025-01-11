@@ -68,7 +68,7 @@ function Bottom() {
         </label>
         <input type="file" id="image" onChange={handleImg} />
         <label htmlFor="file">
-          <img src="Images/attach.png" alt="" />
+          <img src="Images/add2.png" alt="" />
         </label>
         <input type="file" id="file" onChange={handleFile} />
       </div>

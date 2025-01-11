@@ -17,13 +17,33 @@ function useRetrieveMedia() {
 
       const images = [];
       const files = [];
+      const imageNames = new Set();
+      const fileNames = new Set();
 
       messages.forEach((message) => {
         if (message.has("image")) {
-          images.push(message.get("image"));
+          const imageName = message
+            .get("image")
+            .name()
+            .split("_")
+            .slice(1)
+            .join("_");
+          if (!imageNames.has(imageName)) {
+            images.push(message.get("image"));
+            imageNames.add(imageName);
+          }
         }
         if (message.has("file")) {
-          files.push(message.get("file"));
+          const fileName = message
+            .get("file")
+            .name()
+            .split("_")
+            .slice(1)
+            .join("_");
+          if (!fileNames.has(fileName)) {
+            files.push(message.get("file"));
+            fileNames.add(fileName);
+          }
         }
       });
       return { images, files };
