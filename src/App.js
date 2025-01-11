@@ -9,7 +9,7 @@ import ChatPage from "./Pages/ChatPage/ChatPage";
 import { useUserStore } from "./Components/UserData/useUserStore";
 import { useEffect } from "react";
 import HomePage from "./Pages/HomePage/HomePage";
-import DiaryPage from "./Pages/DiaryPage/DiaryPage";
+//import DiaryPage from "./Pages/DiaryPage/DiaryPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
