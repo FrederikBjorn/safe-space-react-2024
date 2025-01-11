@@ -17,6 +17,7 @@ function useUserSignUp() {
       newUser.set("role", user.role);
 
       await newUser.signUp();
+      simpleSuccessToast("The user " + user.userName + " was sucsesfully added.")
       // Ensuring that the current user is still Thanos and not new user!!
       await Parse.User.become(currentSessionToken);
 
@@ -46,10 +47,8 @@ function useUserSignUp() {
 
       await userProfile.save();
       console.log("User profile saved successfully.");
-      simpleSuccessToast("The user " + user.userName + " was sucsesfully added.")
-
     } catch (error) {
-      simpleErrorToast(`User creation unsucsessful - ${error.message}`);
+      simpleErrorToast(`User creation unsuccessful - ${error.message}`);
       console.error("Error details for unsucsessful signup:", error);
     }
   };
