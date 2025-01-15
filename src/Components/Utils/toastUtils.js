@@ -3,6 +3,7 @@ import "./toastUtils.css";
 
 export const simpleErrorToast = (message, type = "error") => {
   toast(message, {
+    className: "toast",
     type: "error", // Accepts "success", "error", "info", "warning", etc.
     position: "top-right",
     autoClose: 3000,
