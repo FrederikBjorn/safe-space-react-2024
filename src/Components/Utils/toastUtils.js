@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import "./toastUtils.css";
 
 export const simpleErrorToast = (message, type = "error") => {
   toast(message, {
@@ -18,6 +19,7 @@ export const simpleErrorToast = (message, type = "error") => {
 
 export const simpleSuccessToast = (message, type = "success") => {
     toast(message, {
+      className: "toast",
       type: "success", // Accepts "success", "error", "info", "warning", etc.
       position: "top-right",
       autoClose: 3000,

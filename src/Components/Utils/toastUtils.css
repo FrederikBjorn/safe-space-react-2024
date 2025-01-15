@@ -1,0 +1,11 @@
+.toast{
+
+    button:hover{
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    button{
+        box-shadow: none;
+    }
+}
