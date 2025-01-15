@@ -13,11 +13,6 @@ export const simpleErrorToast = (message, type = "error") => {
     style: {
         color: "black",
     },
-    closeButton: ({ closeToast }) => (
-      <button className="custom-toast-close" onClick={closeToast}>
-        X
-      </button>
-    ),
   });
 };
 
@@ -34,10 +29,5 @@ export const simpleSuccessToast = (message, type = "success") => {
       style: {
         color: "black",
       },
-      closeButton: ({ closeToast }) => (
-        <button className="custom-toast-close" onClick={closeToast}>
-          X
-        </button>
-      ),
     });
   };
