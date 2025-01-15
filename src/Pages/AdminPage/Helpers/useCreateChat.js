@@ -1,4 +1,5 @@
 import Parse from "parse";
+import { simpleSuccessToast } from "../../../Components/Utils/toastUtils"
 
 export function useCreateChat() {
   async function createChat() {
@@ -20,6 +21,7 @@ export function useCreateChat() {
 
       // Save it...
       const savedChat = await newChat.save();
+      simpleSuccessToast("A new chat, named: Chat " + savedChat.get("chat_number") + ", created.")
       console.log(
         "New chat created with objectId: " +
           savedChat.id +

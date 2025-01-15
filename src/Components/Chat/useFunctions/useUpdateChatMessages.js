@@ -23,7 +23,7 @@ const useUpdateChatMessages = () => {
 
       // I am creating a pointer to user_profile
       const userProfile = new Parse.Object("user_profile");
-      userProfile.id = currentUser.userId;
+      userProfile.id = currentUser.userId; //using Pointer<user_profile>, instead of String, whcich causes error
       message.set("sender_user", userProfile);
 
       // Retrieve the chat object to get a pointer and its ACL
