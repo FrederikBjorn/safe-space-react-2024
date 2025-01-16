@@ -24,8 +24,7 @@ export const useUserStore = create((set) => ({
       const query = new Parse.Query("user_profile");
       query.equalTo("user", user);
       query.select("profile_pic", "chat");
-      // query.include("profile_pic");
-      // query.include("chat");
+      query.include("chat");
       const userProfile = await query.first();
 
       // Get UserId from user_profile

@@ -1,7 +1,6 @@
 function useRetrieveAllChatMessages() {
   const retrieveAllChatMessages = async (messagesQuery, currentUser) => {
-    messagesQuery.include("sender_user");
-    messagesQuery.include("sender_user.profile_pic");
+    messagesQuery.include(["sender_user", "sender_user.profile_pic"]);
 
     const messages = await messagesQuery.find();
 
