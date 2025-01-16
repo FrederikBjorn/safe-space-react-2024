@@ -7,8 +7,9 @@ import { useUserStore } from "../../Components/UserData/useUserStore";
 function ChatPage() {
   const { currentUser } = useUserStore();
 
+  // We need to wait untill we have fetched the data from App.js. Otherwise it fails!
   if (!currentUser) {
-    return <div>Loading...</div>;
+    return;
   }
 
   return (

@@ -7,8 +7,9 @@ function HomePage() {
   const { currentUser } = useUserStore();
   const navigate = useNavigate();
 
+  // We need to wait untill we have fetched the data from App.js. Otherwise it fails!
   if (!currentUser) {
-    return <div>Loading...</div>;
+    return;
   }
 
   return (
