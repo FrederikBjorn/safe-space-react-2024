@@ -42,7 +42,6 @@ nav ul li {
   display: inline-block;
 
   .active-link {
-    font-weight: 500;
     color: var(--primary-turquoise);
   }
 }
@@ -54,7 +53,6 @@ nav ul li a {
 }
 
 ul li a:hover {
-  font-weight: 500;
   color: var(--primary-turquoise);
   border-right: 3px solid var(--primary-turquoise);
   border-left: 3px solid var(--primary-turquoise);
