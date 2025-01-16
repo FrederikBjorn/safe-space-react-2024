@@ -40,6 +40,11 @@ nav ul {
 nav ul li {
   list-style-type: none;
   display: inline-block;
+
+  .active-link {
+    font-weight: 500;
+    color: var(--primary-turquoise);
+  }
 }
 
 nav ul li a {
