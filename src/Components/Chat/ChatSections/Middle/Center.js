@@ -95,11 +95,7 @@ function Middle() {
             )}
             {message.file && (
               <div className="file-text">
-                <a
-                  href={message.file.url()}
-                  download={message.file.name().split("_").slice(1).join("_")}
-                  target="_blank"
-                >
+                <a href={message.file.url()} target="_blank" download>
                   <img src="Images/exercisesItem.png" alt="" />
                   <p className="message-text">
                     {message.file.name().split("_").slice(1).join("_")}
@@ -107,7 +103,7 @@ function Middle() {
                 </a>
               </div>
             )}
-            <p className="message-text">{message.text}</p>
+            {message.text && <p className="message-text">{message.text}</p>}
             <span>{new Date(message.createdAt).toLocaleString()}</span>
           </div>
         </div>

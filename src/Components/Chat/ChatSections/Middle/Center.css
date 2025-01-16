@@ -16,8 +16,14 @@
 
       .texts {
         p {
+          align-self: flex-end;
           background-color: var(--primary-turquoise);
           color: white;
+        }
+        span {
+          padding-left: 0px;
+          padding-right: 5px;
+          align-self: flex-end;
         }
       }
     }
@@ -58,12 +64,15 @@
       }
 
       p {
+        align-self: flex-start;
         padding: 20px;
         background-color: #e9eaed;
         border-radius: 20px;
       }
 
       span {
+        padding-right: 0px;
+        padding-left: 5px;
         font-size: 13px;
         opacity: 50%;
       }

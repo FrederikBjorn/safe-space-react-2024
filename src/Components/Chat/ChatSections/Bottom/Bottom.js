@@ -34,7 +34,7 @@ function Bottom() {
   };
 
   const handleSend = async () => {
-    if (text === "") {
+    if (text === "" && file === null && img === null) {
       return;
     }
     updateMessages(text, img, file);
