@@ -3,6 +3,8 @@ import "./List.css";
 import useRetrieveMedia from "./useFunctions/useRetrieveMedia";
 import Parse from "parse";
 import { useUserStore } from "../UserData/useUserStore";
+import ListFile from "./ListComponents/ListFile";
+import ListImage from "./ListComponents/ListImage";
 
 function List() {
   const { retrieveMedia } = useRetrieveMedia();
@@ -88,6 +90,11 @@ function List() {
     }
   };
 
+  const clearEverything = () => {
+    setFiles([]);
+    setImages([]);
+  };
+
   return (
     <div className="list">
       <div className="exercise-heading">
@@ -100,22 +107,11 @@ function List() {
           <>
             <h2 className="text-small-header text-green">Exercises</h2>
             {files.map((file) => (
-              <li key={file.id} className="item">
-                <div className="item-detail">
-                  <img src="Images/exercisesItem.png" alt="" />
-                  <span
-                    className="message-text"
-                    onClick={() => handleDownload(file.url())}
-                  >
-                    {formatName(file.name())}
-                  </span>
-                </div>
-                <img
-                  src="Images/downloade.png"
-                  alt=""
-                  onClick={() => handleDownload(file.url())}
-                />
-              </li>
+              <ListFile
+                file={file}
+                handleDownload={handleDownload}
+                formatName={formatName}
+              />
             ))}
           </>
         )}
@@ -124,29 +120,24 @@ function List() {
           <>
             <h2 className="text-small-header text-green">Images</h2>
             {images.map((image) => (
-              <li key={image.id} className="item">
-                <div className="item-detail">
-                  <img src={image.url()} alt={image.name()} />
-                  <span
-                    className="message-text"
-                    onClick={() => handleDownload(image.url())}
-                  >
-                    {formatName(image.name())}
-                  </span>
-                </div>
-                <img
-                  src="Images/downloade.png"
-                  alt=""
-                  onClick={() => handleDownload(image.url())}
-                />
-              </li>
+              <ListImage
+                image={image}
+                handleDownload={handleDownload}
+                formatName={formatName}
+              />
             ))}
           </>
         )}
       </ul>
 
       <div className="download">
-        <button>Download All</button>
+        <button
+          onClick={() => {
+            clearEverything();
+          }}
+        >
+          Clear
+        </button>
       </div>
     </div>
   );
