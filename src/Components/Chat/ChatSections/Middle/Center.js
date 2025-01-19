@@ -4,6 +4,7 @@ import Parse from "parse";
 import { useUserStore } from "../../../UserData/useUserStore";
 import useRetrieveAllChatMessages from "../../useFunctions/useRetrieveAllChatMessages";
 import useRetrieveLatestChatMessage from "../../useFunctions/useRetrieveLatestChatMessage";
+import Message from "./middleComponents/Message";
 
 function Middle() {
   const endRef = useRef(null);
@@ -82,31 +83,7 @@ function Middle() {
   return (
     <div className="center">
       {messages?.map((message) => (
-        <div
-          key={message.id}
-          className={`message ${message.isOwnMessage ? "own" : ""}`}
-        >
-          {!message.isOwnMessage && <img src={message.profilePic} alt="" />}
-          <div className="texts">
-            {message.img && (
-              <a href={message.img.url()} target="_blank" download>
-                <img src={message.img.url()} alt="" />
-              </a>
-            )}
-            {message.file && (
-              <div className="file-text">
-                <a href={message.file.url()} target="_blank" download>
-                  <img src="Images/exercisesItem.png" alt="" />
-                  <p className="message-text">
-                    {message.file.name().split("_").slice(1).join("_")}
-                  </p>
-                </a>
-              </div>
-            )}
-            {message.text && <p className="message-text">{message.text}</p>}
-            <span>{new Date(message.createdAt).toLocaleString()}</span>
-          </div>
-        </div>
+        <Message message={message} />
       ))}
       <div ref={endRef} />
     </div>
