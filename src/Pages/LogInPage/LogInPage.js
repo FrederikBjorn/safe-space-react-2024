@@ -13,8 +13,6 @@ function LogInPage() {
       onSubmit={(e) => {
         e.preventDefault();
         userLogIn(username, password);
-        setUsername("");
-        setPassword("");
       }}
     >
       <div className="login-square container-sm bg-white">
