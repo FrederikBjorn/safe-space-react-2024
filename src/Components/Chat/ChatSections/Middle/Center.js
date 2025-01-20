@@ -5,6 +5,7 @@ import { useUserStore } from "../../../UserData/useUserStore";
 import useRetrieveAllChatMessages from "../../useFunctions/useRetrieveAllChatMessages";
 import useRetrieveLatestChatMessage from "../../useFunctions/useRetrieveLatestChatMessage";
 import Message from "./middleComponents/Message";
+import { Oval } from "react-loader-spinner";
 
 function Middle() {
   const endRef = useRef(null);
@@ -12,6 +13,7 @@ function Middle() {
   const { currentUser } = useUserStore();
   const { retrieveAllChatMessages } = useRetrieveAllChatMessages();
   const { retrieveLatestChatMessage } = useRetrieveLatestChatMessage();
+  const [loading, setLoading] = useState(false);
 
   //play sound
   const playSound = () => {
@@ -41,11 +43,13 @@ function Middle() {
         subscription = await messagesQuery.subscribe();
 
         subscription.on("open", async () => {
+          setLoading(true);
           const messagesWithSenderInfo = await retrieveAllChatMessages(
             messagesQuery,
             currentUser
           );
           setMessages(messagesWithSenderInfo);
+          setLoading(false);
         });
 
         subscription.on("create", async (message) => {
@@ -77,8 +81,17 @@ function Middle() {
 
     return () => {
       subscription?.unsubscribe();
+      setLoading(false);
     };
   }, []);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <Oval color="#257a8b" secondaryColor="#257a8b" />
+      </div>
+    );
+  }
 
   return (
     <div className="center">

@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import HomePage from "./Pages/HomePage/HomePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Oval } from "react-loader-spinner";
 
 const app_id = process.env.REACT_APP_PARSE_APP_ID;
 const host_url = process.env.REACT_APP_PARSE_HOST_URL;
@@ -39,7 +40,12 @@ function App() {
     };
   }, []);
 
-  if (isLoading) return <div className="loading">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="loading">
+        <Oval color="#257a8b" secondaryColor="#257a8b" />
+      </div>
+    );
 
   if (user && user.id === adminId) {
     return (
