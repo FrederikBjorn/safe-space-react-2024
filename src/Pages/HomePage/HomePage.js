@@ -17,7 +17,7 @@ function HomePage() {
       <img src="Images/hand1.png" alt="hand1" className="hand-one" />
       <img src="Images/hand2.png" alt="hand2" className="hand-two" />
       <div className="container">
-        <h1>Welcome Back, {currentUser.fullName.split(" ")[0]}!</h1>
+        <h1>Welcome back, {currentUser.fullName.split(" ")[0]}!</h1>
         <p>What do you want to do today?</p>
 
         <div className="navigations">
