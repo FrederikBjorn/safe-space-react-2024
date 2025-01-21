@@ -21,7 +21,7 @@ export function useCreateChat() {
 
       // Save it...
       const savedChat = await newChat.save();
-      simpleSuccessToast("A new chat, named: Chat " + savedChat.get("chat_number") + ", created.")
+      simpleSuccessToast("Chat " + savedChat.get("chat_number") + " is created.")
       console.log(
         "New chat created with objectId: " +
           savedChat.id +
